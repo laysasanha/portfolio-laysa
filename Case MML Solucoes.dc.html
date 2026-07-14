@@ -3,6 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('ls-portfolio-theme');
+    var theme = saved || ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch (e) {}
+})();
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -13,9 +22,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-html, body { margin: 0; padding: 0; background: #f5f4f0; }
-a { color: #0e0e0e; text-decoration: none; }
-a:hover { color: #6b6b5f; }
+/* ── Theme tokens (light/dark) ── */
+:root { --paper: #f5f4f0; --ink: #0e0e0e; --muted: #6b6b5f; --ink-rgb: 14,14,14; --surface: #ffffff; }
+html[data-theme="dark"] { --paper: #0e0e0e; --ink: #f5f4f0; --muted: #a3a396; --ink-rgb: 245,244,240; --surface: #1c1c1a; }
+.theme-icon-sun, .theme-icon-moon { display: none; }
+html[data-theme="light"] .theme-icon-moon { display: block; }
+html[data-theme="dark"] .theme-icon-sun { display: block; }
+
+html, body { margin: 0; padding: 0; background: var(--paper); }
+a { color: var(--ink); text-decoration: none; }
+a:hover { color: var(--muted); }
 [class*="Inter:"] { font-family: 'Inter', sans-serif !important; }
 @media (min-width: 768px) {
   .cs-pad { padding-left: 48px !important; padding-right: 48px !important; }
@@ -26,49 +42,55 @@ a:hover { color: #6b6b5f; }
 </style>
 </helmet>
 
-<div data-screen-label="Case MML Soluções" style="width: 100%; min-height: 100vh; background: #f5f4f0; color: #0e0e0e; font-family: 'Inter', sans-serif;">
+<div data-screen-label="Case MML Soluções" style="width: 100%; min-height: 100vh; background: var(--paper); color: var(--ink); font-family: 'Inter', sans-serif;">
 
   <!-- Top bar -->
-  <div class="cs-pad" style="position: sticky; top: 0; z-index: 10; background: #f5f4f0; border-bottom: 1px solid rgba(14,14,14,0.12); height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;">
-    <a href="Portfolio Responsivo.dc.html" style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: #6b6b5f;" style-hover="color: #0e0e0e;">
+  <div class="cs-pad" style="position: sticky; top: 0; z-index: 10; background: var(--paper); border-bottom: 1px solid rgba(var(--ink-rgb),0.12); height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;">
+    <a href="Portfolio Responsivo.dc.html" style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--muted);" style-hover="color: var(--ink);">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
       Voltar
     </a>
-    <a href="Portfolio Responsivo.dc.html" aria-label="Fechar" style="width: 28px; height: 28px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); display: flex; align-items: center; justify-content: center; color: #6b6b5f;" style-hover="background: #0e0e0e; color: #f5f4f0;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+    <button onClick="{{ toggleTheme }}" aria-label="Alternar tema claro/escuro" style="width: 28px; height: 28px; border-radius: 999px; border: 1px solid rgba(var(--ink-rgb),0.12); display: flex; align-items: center; justify-content: center; background: transparent; color: var(--muted); cursor: pointer;" style-hover="background: var(--ink); color: var(--paper);">
+      <svg class="theme-icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+      <svg class="theme-icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+    </button>
+    <a href="Portfolio Responsivo.dc.html" aria-label="Fechar" style="width: 28px; height: 28px; border-radius: 999px; border: 1px solid rgba(var(--ink-rgb),0.12); display: flex; align-items: center; justify-content: center; color: var(--muted);" style-hover="background: var(--ink); color: var(--paper);">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
     </a>
+    </div>
   </div>
 
   <div class="cs-pad cs-y cs-gap" style="max-width: 1024px; margin: 0 auto; padding: 48px 20px; display: flex; flex-direction: column; gap: 64px; box-sizing: border-box;">
 
     <!-- Hero -->
     <div style="display: flex; flex-direction: column; gap: 24px;">
-      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: #6b6b5f; margin: 0;">Plataforma B2B · Infraestrutura de TI</p>
-      <h1 style="font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; text-transform: uppercase; color: #0e0e0e; margin: 0;">MML SOLUÇÕES</h1>
-      <p style="font-size: 16px; line-height: 1.625; color: #6b6b5f; max-width: 672px; margin: 0;">Do caos operacional ao controle total — projetando clareza para quem gerencia servidores críticos 24/7.</p>
-      <div style="display: flex; flex-wrap: wrap; gap: 32px; padding-top: 16px; border-top: 1px solid rgba(14,14,14,0.12); margin-top: 8px;">
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--muted); margin: 0;">Plataforma B2B · Infraestrutura de TI</p>
+      <h1 style="font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; text-transform: uppercase; color: var(--ink); margin: 0;">MML SOLUÇÕES</h1>
+      <p style="font-size: 16px; line-height: 1.625; color: var(--muted); max-width: 672px; margin: 0;">Do caos operacional ao controle total — projetando clareza para quem gerencia servidores críticos 24/7.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 32px; padding-top: 16px; border-top: 1px solid rgba(var(--ink-rgb),0.12); margin-top: 8px;">
         <div>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0 0 4px;">Meu papel</p>
+          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin: 0 0 4px;">Meu papel</p>
           <div style="display: flex; flex-direction: column; gap: 2px;">
-            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">UX Research &amp; jornada do usuário</p>
-            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">Arquitetura da informação</p>
-            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">Fluxos e wireframes</p>
-            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">Prototipação de alta fidelidade</p>
-            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">Design System e tokens</p>
-            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">Handoff com desenvolvimento</p>
+            <p style="font-size: 12px; font-weight: 500; color: var(--ink); margin: 0;">UX Research &amp; jornada do usuário</p>
+            <p style="font-size: 12px; font-weight: 500; color: var(--ink); margin: 0;">Arquitetura da informação</p>
+            <p style="font-size: 12px; font-weight: 500; color: var(--ink); margin: 0;">Fluxos e wireframes</p>
+            <p style="font-size: 12px; font-weight: 500; color: var(--ink); margin: 0;">Prototipação de alta fidelidade</p>
+            <p style="font-size: 12px; font-weight: 500; color: var(--ink); margin: 0;">Design System e tokens</p>
+            <p style="font-size: 12px; font-weight: 500; color: var(--ink); margin: 0;">Handoff com desenvolvimento</p>
           </div>
         </div>
         <div>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0 0 4px;">Ferramentas</p>
+          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin: 0 0 4px;">Ferramentas</p>
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <span style="font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); color: #0e0e0e;">Figma</span>
-            <span style="font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); color: #0e0e0e;">FigJam</span>
-            <span style="font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); color: #0e0e0e;">Claude Code</span>
+            <span style="font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(var(--ink-rgb),0.12); color: var(--ink);">Figma</span>
+            <span style="font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(var(--ink-rgb),0.12); color: var(--ink);">FigJam</span>
+            <span style="font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(var(--ink-rgb),0.12); color: var(--ink);">Claude Code</span>
           </div>
         </div>
         <div>
-          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0 0 4px;">Período</p>
-          <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">2023 – 2024</p>
+          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin: 0 0 4px;">Período</p>
+          <p style="font-size: 12px; font-weight: 500; color: var(--ink); margin: 0;">2023 – 2024</p>
         </div>
       </div>
     </div>
@@ -76,26 +98,26 @@ a:hover { color: #6b6b5f; }
     <!-- Contexto / Desafio / Solução -->
     <div class="cs-3col" style="display: grid; grid-template-columns: 1fr; gap: 32px;">
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Contexto</p>
-        <div style="width: 32px; height: 1px; background: #0e0e0e;"></div>
-        <p style="font-size: 14px; line-height: 1.8; color: #0e0e0e; margin: 0;">A MML SOLUÇÕES é uma plataforma B2B para monitoramento de infraestrutura de TI — servidores, temperatura, saúde e alertas em tempo real. Fui responsável pela arquitetura de informação, fluxos de onboarding, wireframes e toda a prototipação de alta fidelidade.</p>
+        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin: 0;">Contexto</p>
+        <div style="width: 32px; height: 1px; background: var(--ink);"></div>
+        <p style="font-size: 14px; line-height: 1.8; color: var(--ink); margin: 0;">A MML SOLUÇÕES é uma plataforma B2B para monitoramento de infraestrutura de TI — servidores, temperatura, saúde e alertas em tempo real. Fui responsável pela arquitetura de informação, fluxos de onboarding, wireframes e toda a prototipação de alta fidelidade.</p>
       </div>
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Desafio</p>
-        <div style="width: 32px; height: 1px; background: #0e0e0e;"></div>
-        <p style="font-size: 14px; line-height: 1.8; color: #0e0e0e; margin: 0;">Equipes de TI precisavam visualizar o estado crítico de múltiplos servidores de forma rápida, com fluxos de cadastro multi-etapa que não sacrificassem a clareza para usuários não-técnicos.</p>
+        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin: 0;">Desafio</p>
+        <div style="width: 32px; height: 1px; background: var(--ink);"></div>
+        <p style="font-size: 14px; line-height: 1.8; color: var(--ink); margin: 0;">Equipes de TI precisavam visualizar o estado crítico de múltiplos servidores de forma rápida, com fluxos de cadastro multi-etapa que não sacrificassem a clareza para usuários não-técnicos.</p>
       </div>
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Solução</p>
-        <div style="width: 32px; height: 1px; background: #0e0e0e;"></div>
-        <p style="font-size: 14px; line-height: 1.8; color: #0e0e0e; margin: 0;">Sistema de status visual com semântica de cores (verde = saudável, amarelo = alerta, vermelho = crítico), onboarding guiado em 3 etapas e dashboard compacto com drill-down por servidor.</p>
+        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin: 0;">Solução</p>
+        <div style="width: 32px; height: 1px; background: var(--ink);"></div>
+        <p style="font-size: 14px; line-height: 1.8; color: var(--ink); margin: 0;">Sistema de status visual com semântica de cores (verde = saudável, amarelo = alerta, vermelho = crítico), onboarding guiado em 3 etapas e dashboard compacto com drill-down por servidor.</p>
       </div>
     </div>
 
     <!-- Landing page -->
     <div style="display: flex; flex-direction: column; gap: 16px;">
-      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Landing page</p>
-      <p style="font-size: 14px; color: #6b6b5f; max-width: 672px; line-height: 1.625; margin: 0;">Página de apresentação da plataforma com navegação, proposta de valor e CTAs claros para conversão de novos clientes B2B.</p>
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin: 0;">Landing page</p>
+      <p style="font-size: 14px; color: var(--muted); max-width: 672px; line-height: 1.625; margin: 0;">Página de apresentação da plataforma com navegação, proposta de valor e CTAs claros para conversão de novos clientes B2B.</p>
       <div data-scale-wrap="2600" style="border-radius: 16px; border: 1px solid #e9e9e9; background: #fdfdfd; overflow: hidden;">
         <div data-scale-inner style="width: 1280px; transform-origin: top left;">
           <x-import component-from-global-scope="FigA3Landing" from="./figma-screens/FigA3Landing.jsx" hint-size="1280px,2600px"></x-import>
@@ -105,9 +127,9 @@ a:hover { color: #6b6b5f; }
 
     <!-- Fluxos de autenticação -->
     <div style="display: flex; flex-direction: column; gap: 24px;">
-      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Fluxos de autenticação</p>
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin: 0;">Fluxos de autenticação</p>
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #0e0e0e; letter-spacing: 0.025em; margin: 0;">Login</p>
+        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--ink); letter-spacing: 0.025em; margin: 0;">Login</p>
         <div data-scale-wrap="768" style="border-radius: 16px; border: 1px solid #e9e9e9; background: #fdfdfd; overflow: hidden;">
           <div data-scale-inner style="width: 1280px; transform-origin: top left;">
             <x-import component-from-global-scope="FigA3Login" from="./figma-screens/FigA3Login.jsx" hint-size="1280px,768px"></x-import>
@@ -115,7 +137,7 @@ a:hover { color: #6b6b5f; }
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #0e0e0e; letter-spacing: 0.025em; margin: 0;">Cadastro — Dados pessoais</p>
+        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--ink); letter-spacing: 0.025em; margin: 0;">Cadastro — Dados pessoais</p>
         <div data-scale-wrap="768" style="border-radius: 16px; border: 1px solid #e9e9e9; background: #fdfdfd; overflow: hidden;">
           <div data-scale-inner style="width: 1280px; transform-origin: top left;">
             <x-import component-from-global-scope="FigA3Cad1" from="./figma-screens/FigA3Cad1.jsx" hint-size="1280px,768px"></x-import>
@@ -123,7 +145,7 @@ a:hover { color: #6b6b5f; }
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #0e0e0e; letter-spacing: 0.025em; margin: 0;">Cadastro — Dados da empresa</p>
+        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--ink); letter-spacing: 0.025em; margin: 0;">Cadastro — Dados da empresa</p>
         <div data-scale-wrap="768" style="border-radius: 16px; border: 1px solid #e9e9e9; background: #fdfdfd; overflow: hidden;">
           <div data-scale-inner style="width: 1280px; transform-origin: top left;">
             <x-import component-from-global-scope="FigA3Cad2" from="./figma-screens/FigA3Cad2.jsx" hint-size="1280px,768px"></x-import>
@@ -131,7 +153,7 @@ a:hover { color: #6b6b5f; }
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #0e0e0e; letter-spacing: 0.025em; margin: 0;">Cadastro — Senha de acesso</p>
+        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--ink); letter-spacing: 0.025em; margin: 0;">Cadastro — Senha de acesso</p>
         <div data-scale-wrap="768" style="border-radius: 16px; border: 1px solid #e9e9e9; background: #fdfdfd; overflow: hidden;">
           <div data-scale-inner style="width: 1280px; transform-origin: top left;">
             <x-import component-from-global-scope="FigA3Cad3" from="./figma-screens/FigA3Cad3.jsx" hint-size="1280px,768px"></x-import>
@@ -142,9 +164,9 @@ a:hover { color: #6b6b5f; }
 
     <!-- Plataforma -->
     <div style="display: flex; flex-direction: column; gap: 24px;">
-      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Plataforma — Personalização e dashboard</p>
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin: 0;">Plataforma — Personalização e dashboard</p>
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #0e0e0e; letter-spacing: 0.025em; margin: 0;">Personalização de plano</p>
+        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--ink); letter-spacing: 0.025em; margin: 0;">Personalização de plano</p>
         <div data-scale-wrap="911" style="border-radius: 16px; border: 1px solid #e9e9e9; background: #fdfdfd; overflow: hidden;">
           <div data-scale-inner style="width: 1280px; transform-origin: top left;">
             <x-import component-from-global-scope="FigA3Plano" from="./figma-screens/FigA3Plano.jsx" hint-size="1280px,911px"></x-import>
@@ -152,7 +174,7 @@ a:hover { color: #6b6b5f; }
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #0e0e0e; letter-spacing: 0.025em; margin: 0;">Dashboard — Lista de servidores</p>
+        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--ink); letter-spacing: 0.025em; margin: 0;">Dashboard — Lista de servidores</p>
         <div data-scale-wrap="700" style="border-radius: 16px; border: 1px solid #e9e9e9; background: #fdfdfd; overflow: hidden;">
           <div data-scale-inner style="width: 1280px; transform-origin: top left;">
             <x-import component-from-global-scope="FigA3Dash" from="./figma-screens/FigA3Dash.jsx" hint-size="1280px,700px"></x-import>
@@ -160,7 +182,7 @@ a:hover { color: #6b6b5f; }
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: #0e0e0e; letter-spacing: 0.025em; margin: 0;">Detalhes do servidor</p>
+        <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--ink); letter-spacing: 0.025em; margin: 0;">Detalhes do servidor</p>
         <div data-scale-wrap="900" style="border-radius: 16px; border: 1px solid #e9e9e9; background: #fdfdfd; overflow: hidden;">
           <div data-scale-inner style="width: 1280px; transform-origin: top left;">
             <x-import component-from-global-scope="FigA3Detalhe" from="./figma-screens/FigA3Detalhe.jsx" hint-size="1280px,900px"></x-import>
@@ -172,18 +194,18 @@ a:hover { color: #6b6b5f; }
     <!-- Design System -->
     <div style="display: flex; flex-direction: column; gap: 24px;">
       <div>
-        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0 0 12px;">Design System</p>
-        <p style="font-size: 14px; line-height: 1.8; color: #6b6b5f; max-width: 672px; margin: 0;">Cores, tipografia e componentes definidos para garantir consistência visual em todas as telas — de autenticação ao dashboard de monitoramento.</p>
+        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin: 0 0 12px;">Design System</p>
+        <p style="font-size: 14px; line-height: 1.8; color: var(--muted); max-width: 672px; margin: 0;">Cores, tipografia e componentes definidos para garantir consistência visual em todas as telas — de autenticação ao dashboard de monitoramento.</p>
       </div>
-      <div style="border-radius: 16px; overflow: hidden; border: 1px solid rgba(14,14,14,0.12);">
+      <div style="border-radius: 16px; overflow: hidden; border: 1px solid rgba(var(--ink-rgb),0.12);">
         <x-import component-from-global-scope="FigMMLDS" from="./figma-screens/FigMMLDS.jsx" hint-size="100%,800px"></x-import>
       </div>
     </div>
 
     <!-- Footer -->
-    <div style="border-top: 1px solid rgba(14,14,14,0.12); padding-top: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-      <p style="font-size: 12px; color: #6b6b5f; margin: 0;">© 2026 Laysa Santiago Alfredo</p>
-      <a href="Portfolio Responsivo.dc.html" style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; border: 1px solid #0e0e0e; border-radius: 999px; padding: 10px 20px; color: #0e0e0e; transition: all 0.2s;" style-hover="background: #0e0e0e; color: #f5f4f0;">
+    <div style="border-top: 1px solid rgba(var(--ink-rgb),0.12); padding-top: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+      <p style="font-size: 12px; color: var(--muted); margin: 0;">© 2026 Laysa Santiago Alfredo</p>
+      <a href="Portfolio Responsivo.dc.html" style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--ink); border-radius: 999px; padding: 10px 20px; color: var(--ink); transition: all 0.2s;" style-hover="background: var(--ink); color: var(--paper);">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
         Voltar
       </a>
@@ -226,7 +248,14 @@ class Component extends DCLogic {
   }
 
   renderVals() {
-    return {};
+    return {
+      toggleTheme: () => {
+        const html = document.documentElement;
+        const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", next);
+        try { localStorage.setItem("ls-portfolio-theme", next); } catch (e) {}
+      },
+    };
   }
 }
 </script>
