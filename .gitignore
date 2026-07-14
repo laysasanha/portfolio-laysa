@@ -1,1 +1,5 @@
 .thumbnail
+.DS_Store
+
+uploads/*
+!uploads/Curriculo_Laysa_Santiago_Alfredo.pdf

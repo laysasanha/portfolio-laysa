@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Instrument+Serif:ital@0;1&family=Jersey+M54&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+html, body { margin: 0; padding: 0; background: #f5f4f0; }
+a { color: #0e0e0e; text-decoration: none; }
+a:hover { color: #6b6b5f; }
+@media (min-width: 768px) {
+  .cs-pad { padding-left: 48px !important; padding-right: 48px !important; }
+  .cs-y { padding-top: 80px !important; padding-bottom: 80px !important; }
+  .cs-gap { gap: 96px !important; }
+  .cs-3col { grid-template-columns: repeat(3, 1fr) !important; gap: 48px !important; }
+  .cs-2col { grid-template-columns: 1fr 1fr !important; gap: 48px !important; }
+}
+</style>
+</helmet>
+
+<div data-screen-label="Case IN FIT" style="width: 100%; min-height: 100vh; background: #f5f4f0; color: #0e0e0e; font-family: 'Inter', sans-serif;">
+
+  <!-- Top bar -->
+  <div class="cs-pad" style="position: sticky; top: 0; z-index: 10; background: #f5f4f0; border-bottom: 1px solid rgba(14,14,14,0.12); height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;">
+    <a href="Portfolio Responsivo.dc.html" style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: #6b6b5f;" style-hover="color: #0e0e0e;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+      Voltar
+    </a>
+    <a href="Portfolio Responsivo.dc.html" aria-label="Fechar" style="width: 28px; height: 28px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); display: flex; align-items: center; justify-content: center; color: #6b6b5f;" style-hover="background: #0e0e0e; color: #f5f4f0;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+    </a>
+  </div>
+
+  <div class="cs-pad cs-y cs-gap" style="max-width: 1024px; margin: 0 auto; padding: 48px 20px; display: flex; flex-direction: column; gap: 64px; box-sizing: border-box;">
+
+    <!-- Hero -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: #6b6b5f; margin: 0;">Plataforma Fitness · Web App</p>
+      <h1 style="font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; text-transform: uppercase; color: #0e0e0e; margin: 0;">IN FIT</h1>
+      <p style="font-size: 16px; line-height: 1.625; color: #6b6b5f; max-width: 672px; margin: 0;">Plataforma completa para academias — da landing page de conversão ao dashboard de treinos, com jornadas separadas para alunos e funcionários.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 32px; padding-top: 16px; border-top: 1px solid rgba(14,14,14,0.12); margin-top: 8px;">
+        <div>
+          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0 0 4px;">Meu papel</p>
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">UI Design end-to-end</p>
+            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">Fluxos de cadastro e checkout</p>
+            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">Dashboards por perfil de usuário</p>
+            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">Design System e componentes</p>
+          </div>
+        </div>
+        <div>
+          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0 0 4px;">Ferramentas</p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span style="font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); color: #0e0e0e;">Figma</span>
+          </div>
+        </div>
+        <div>
+          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0 0 4px;">Tipografia</p>
+          <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">Jersey M54 + Inter</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contexto / Desafio / Solução -->
+    <div class="cs-3col" style="display: grid; grid-template-columns: 1fr; gap: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Contexto</p>
+        <div style="width: 32px; height: 1px; background: #0e0e0e;"></div>
+        <p style="font-size: 14px; line-height: 1.8; color: #0e0e0e; margin: 0;">O IN FIT conecta academias e alunos em uma única plataforma: site de conversão com planos, cadastro com pagamento em 2 passos e dashboards de treinos em vídeo com categorias e trilhas.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Desafio</p>
+        <div style="width: 32px; height: 1px; background: #0e0e0e;"></div>
+        <p style="font-size: 14px; line-height: 1.8; color: #0e0e0e; margin: 0;">Dois perfis muito diferentes — aluno que consome treinos e funcionário que cadastra e gerencia conteúdo — precisavam conviver no mesmo sistema visual sem confundir papéis e permissões.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Solução</p>
+        <div style="width: 32px; height: 1px; background: #0e0e0e;"></div>
+        <p style="font-size: 14px; line-height: 1.8; color: #0e0e0e; margin: 0;">Dark theme energético com azul elétrico para ações e laranja para destaque/estado ativo, seletor Aluno/Funcionário já no login, e modais de cadastro que reutilizam os mesmos componentes de categoria e nível.</p>
+      </div>
+    </div>
+
+    <!-- Design System -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Design System</p>
+      <div style="border-radius: 16px; background: #121411; padding: 32px; display: flex; flex-direction: column; gap: 32px;">
+        <div class="cs-2col" style="display: grid; grid-template-columns: 1fr; gap: 32px;">
+          <!-- Cores -->
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: #8a8d88; margin: 0; font-weight: 600;">Cores</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #008eff; border: 1px solid rgba(255,255,255,0.12);"></div>
+                <span style="font-size: 10px; color: #8a8d88; font-family: monospace;">#008EFF</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #ff5c00; border: 1px solid rgba(255,255,255,0.12);"></div>
+                <span style="font-size: 10px; color: #8a8d88; font-family: monospace;">#FF5C00</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #f15223; border: 1px solid rgba(255,255,255,0.12);"></div>
+                <span style="font-size: 10px; color: #8a8d88; font-family: monospace;">#F15223</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #121411; border: 1px solid rgba(255,255,255,0.2);"></div>
+                <span style="font-size: 10px; color: #8a8d88; font-family: monospace;">#121411</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #1b1d1a; border: 1px solid rgba(255,255,255,0.12);"></div>
+                <span style="font-size: 10px; color: #8a8d88; font-family: monospace;">#1B1D1A</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #464646; border: 1px solid rgba(255,255,255,0.12);"></div>
+                <span style="font-size: 10px; color: #8a8d88; font-family: monospace;">#464646</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #ffffff; border: 1px solid rgba(255,255,255,0.12);"></div>
+                <span style="font-size: 10px; color: #8a8d88; font-family: monospace;">#FFFFFF</span>
+              </div>
+            </div>
+          </div>
+          <!-- Tipografia -->
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: #8a8d88; margin: 0; font-weight: 600;">Tipografia</p>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;"><span style="font-size: 40px; color: #ffffff; font-family: 'Jersey M54', sans-serif;">SEUS TREINOS</span><span style="font-size: 11px; color: #8a8d88;">Jersey M54 · 42-64px</span></div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;"><span style="font-size: 18px; font-weight: 600; color: #ffffff;">Título de card e navegação</span><span style="font-size: 11px; color: #8a8d88;">Inter · 16-18px · 600</span></div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px;"><span style="font-size: 16px; color: #d9d9d9;">Corpo, descrições e formulários</span><span style="font-size: 11px; color: #8a8d88;">Inter · 16px · 400</span></div>
+          </div>
+        </div>
+        <!-- Componentes -->
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: #8a8d88; margin: 0; font-weight: 600;">Componentes</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+            <button style="background: #008eff; color: #ffffff; border: none; border-radius: 8px; padding: 12px 28px; font-size: 14px; font-weight: 500; font-family: 'Inter', sans-serif; cursor: pointer;">Login</button>
+            <button style="background: transparent; color: #d9d9d9; border: 1px solid #464646; border-radius: 8px; padding: 12px 28px; font-size: 14px; font-family: 'Inter', sans-serif; cursor: pointer;">Iniciante</button>
+            <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+              <div style="width: 48px; height: 48px; border-radius: 999px; background: rgba(0,142,255,0.15); border: 1.5px solid #008eff; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#008eff" stroke-width="1.8" stroke-linecap="round"><path d="M6.5 6.5 17.5 17.5"></path><path d="M4 10V6a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v8"></path><path d="M20 14v4a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2V8"></path></svg>
+              </div>
+              <span style="font-size: 11px; color: #d9d9d9;">Bíceps</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+              <div style="width: 48px; height: 48px; border-radius: 999px; background: rgba(255,92,0,0.15); border: 1.5px solid #ff5c00; display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff5c00" stroke-width="1.8" stroke-linecap="round"><path d="M6.5 6.5 17.5 17.5"></path><path d="M4 10V6a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v8"></path><path d="M20 14v4a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2V8"></path></svg>
+              </div>
+              <span style="font-size: 11px; color: #ff5c00;">Ativa</span>
+            </div>
+            <div style="width: 44px; height: 44px; border-radius: 999px; background: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 4px rgba(0,142,255,0.2);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#008eff"><path d="M8 5v14l11-7z"></path></svg>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 32px; height: 32px; border-radius: 999px; background: #008eff; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">1</div>
+              <div style="width: 64px; height: 2px; background: #008eff;"></div>
+              <div style="width: 32px; height: 32px; border-radius: 999px; background: rgba(0,142,255,0.3); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Telas -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Telas</p>
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <sc-for list="{{ fullScreens }}" as="s" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #0e0e0e; margin: 0;">{{ s.label }}</p>
+            <div style="border-radius: 16px; border: 1px solid rgba(14,14,14,0.12); background: #121411; overflow: hidden;">
+              <img src="{{ s.img }}" alt="{{ s.label }}" style="width: 100%; display: block;">
+            </div>
+            <p style="font-size: 12px; line-height: 1.6; color: #6b6b5f; margin: 0;">{{ s.desc }}</p>
+          </div>
+        </sc-for>
+        <div class="cs-2col" style="display: grid; grid-template-columns: 1fr; gap: 24px;">
+          <sc-for list="{{ halfScreens }}" as="s" hint-placeholder-count="4">
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #0e0e0e; margin: 0;">{{ s.label }}</p>
+              <div style="border-radius: 16px; border: 1px solid rgba(14,14,14,0.12); background: #121411; overflow: hidden;">
+                <img src="{{ s.img }}" alt="{{ s.label }}" style="width: 100%; display: block;">
+              </div>
+              <p style="font-size: 12px; line-height: 1.6; color: #6b6b5f; margin: 0;">{{ s.desc }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="border-top: 1px solid rgba(14,14,14,0.12); padding-top: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+      <p style="font-size: 12px; color: #6b6b5f; margin: 0;">© 2026 Laysa Santiago Alfredo</p>
+      <a href="Portfolio Responsivo.dc.html" style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; border: 1px solid #0e0e0e; border-radius: 999px; padding: 10px 20px; color: #0e0e0e; transition: all 0.2s;" style-hover="background: #0e0e0e; color: #f5f4f0;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+        Voltar
+      </a>
+    </div>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      fullScreens: [
+        { img: "assets/infit/landing.png",          label: "01 · Landing page",              desc: "Hero com recorte fotográfico sobre diagonal azul, programas de treino, vídeo de destaque, feedbacks e planos Básico / Intermediário / Pro." },
+        { img: "assets/infit/dash-aluno.png",       label: "02 · Dashboard do aluno",        desc: "Categorias por grupo muscular, trilhas de treino com \"Ver mais\" e lista de treinos em vídeo — tudo a um clique do play." },
+        { img: "assets/infit/dash-funcionario.png", label: "03 · Dashboard do funcionário",  desc: "Visão de gestão com menus de serviços, planos, financeiro e a ação principal: cadastrar novos treinos." },
+      ],
+      halfScreens: [
+        { img: "assets/infit/login.png",              label: "04 · Login",                    desc: "Seletor Aluno / Funcionário define a jornada já na entrada, com login social." },
+        { img: "assets/infit/checkout-dados.png",     label: "05 · Cadastro — Seus dados",    desc: "Passo 1 de 2: dados pessoais com stepper de progresso." },
+        { img: "assets/infit/checkout-pagamento.png", label: "06 · Cadastro — Pagamento",     desc: "Passo 2 de 2: cartão, Pix ou boleto para concluir a assinatura." },
+        { img: "assets/infit/modal-planos.png",       label: "07 · Modal — Novo plano de treino", desc: "Categoria, nível, descrição e upload de aulas em vídeo." },
+        { img: "assets/infit/modal-trilha.png",       label: "08 · Modal — Trilha de treinos", desc: "Período, tempo por dia e calorias para montar a trilha personalizada." },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

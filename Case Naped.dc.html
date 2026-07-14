@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Instrument+Serif:ital@0;1&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html, body { margin: 0; padding: 0; background: #f5f4f0; }
+a { color: #0e0e0e; text-decoration: none; }
+a:hover { color: #6b6b5f; }
+@media (min-width: 768px) {
+  .cs-pad { padding-left: 48px !important; padding-right: 48px !important; }
+  .cs-y { padding-top: 80px !important; padding-bottom: 80px !important; }
+  .cs-gap { gap: 96px !important; }
+  .cs-3col { grid-template-columns: repeat(3, 1fr) !important; gap: 48px !important; }
+  .cs-2col { grid-template-columns: 1fr 1fr !important; gap: 48px !important; }
+  .cs-shots { grid-template-columns: 1fr 1fr !important; }
+}
+</style>
+</helmet>
+
+<div data-screen-label="Case Naped" style="width: 100%; min-height: 100vh; background: #f5f4f0; color: #0e0e0e; font-family: 'Inter', sans-serif;">
+
+  <!-- Top bar -->
+  <div class="cs-pad" style="position: sticky; top: 0; z-index: 10; background: #f5f4f0; border-bottom: 1px solid rgba(14,14,14,0.12); height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;">
+    <a href="Portfolio Responsivo.dc.html" style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: #6b6b5f;" style-hover="color: #0e0e0e;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+      Voltar
+    </a>
+    <a href="Portfolio Responsivo.dc.html" aria-label="Fechar" style="width: 28px; height: 28px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); display: flex; align-items: center; justify-content: center; color: #6b6b5f;" style-hover="background: #0e0e0e; color: #f5f4f0;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+    </a>
+  </div>
+
+  <div class="cs-pad cs-y cs-gap" style="max-width: 1024px; margin: 0 auto; padding: 48px 20px; display: flex; flex-direction: column; gap: 64px; box-sizing: border-box;">
+
+    <!-- Hero -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: #6b6b5f; margin: 0;">Portal de Notícias · Cultura Nerd</p>
+      <h1 style="font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; text-transform: uppercase; color: #0e0e0e; margin: 0;">Naped</h1>
+      <p style="font-size: 16px; line-height: 1.625; color: #6b6b5f; max-width: 672px; margin: 0;">Mundo nerd? Naped! — portal dark de notícias sobre séries, filmes, animes e games, do feed de destaques à página 404.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 32px; padding-top: 16px; border-top: 1px solid rgba(14,14,14,0.12); margin-top: 8px;">
+        <div>
+          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0 0 4px;">Meu papel</p>
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">UI Design (desktop e mobile)</p>
+            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">Design System e componentes</p>
+            <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">Estados de erro e busca</p>
+          </div>
+        </div>
+        <div>
+          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0 0 4px;">Ferramentas</p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span style="font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); color: #0e0e0e;">Figma</span>
+          </div>
+        </div>
+        <div>
+          <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0 0 4px;">Tipografia</p>
+          <p style="font-size: 12px; font-weight: 500; color: #0e0e0e; margin: 0;">Quicksand</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contexto / Desafio / Solução -->
+    <div class="cs-3col" style="display: grid; grid-template-columns: 1fr; gap: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Contexto</p>
+        <div style="width: 32px; height: 1px; background: #0e0e0e;"></div>
+        <p style="font-size: 14px; line-height: 1.8; color: #0e0e0e; margin: 0;">O Naped é um portal de notícias para o público nerd — séries, filmes, animes e games — com home de destaques, páginas de categoria com busca, leitura de notícia e estados de erro.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Desafio</p>
+        <div style="width: 32px; height: 1px; background: #0e0e0e;"></div>
+        <p style="font-size: 14px; line-height: 1.8; color: #0e0e0e; margin: 0;">Organizar muito conteúdo visual (capas de filmes e animes) sem virar ruído — mantendo hierarquia clara entre destaque principal, listas laterais e grades de notícias.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Solução</p>
+        <div style="width: 32px; height: 1px; background: #0e0e0e;"></div>
+        <p style="font-size: 14px; line-height: 1.8; color: #0e0e0e; margin: 0;">Dark theme quase-preto com roxo como única cor de ação, cards com overlay de gradiente para legibilidade e um Design System de componentes reutilizáveis — tags, botões, busca e paginação.</p>
+      </div>
+    </div>
+
+    <!-- Design System -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Design System</p>
+      <div style="border-radius: 16px; background: #14121f; padding: 32px; display: flex; flex-direction: column; gap: 32px;">
+        <div class="cs-2col" style="display: grid; grid-template-columns: 1fr; gap: 32px;">
+          <!-- Cores -->
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: #8d8a99; margin: 0; font-weight: 600;">Cores</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #8257e6; border: 1px solid rgba(255,255,255,0.12);"></div>
+                <span style="font-size: 10px; color: #8d8a99; font-family: monospace;">#8257E6</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #9466ff; border: 1px solid rgba(255,255,255,0.12);"></div>
+                <span style="font-size: 10px; color: #8d8a99; font-family: monospace;">#9466FF</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #14121f; border: 1px solid rgba(255,255,255,0.2);"></div>
+                <span style="font-size: 10px; color: #8d8a99; font-family: monospace;">#14121F</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #1e1b2e; border: 1px solid rgba(255,255,255,0.12);"></div>
+                <span style="font-size: 10px; color: #8d8a99; font-family: monospace;">#1E1B2E</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #e1e1e6; border: 1px solid rgba(255,255,255,0.12);"></div>
+                <span style="font-size: 10px; color: #8d8a99; font-family: monospace;">#E1E1E6</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 14px; background: #8d8a99; border: 1px solid rgba(255,255,255,0.12);"></div>
+                <span style="font-size: 10px; color: #8d8a99; font-family: monospace;">#8D8A99</span>
+              </div>
+            </div>
+          </div>
+          <!-- Tipografia -->
+          <div style="display: flex; flex-direction: column; gap: 16px; font-family: 'Quicksand', sans-serif;">
+            <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: #8d8a99; margin: 0; font-weight: 600; font-family: 'Inter', sans-serif;">Tipografia — Quicksand</p>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;"><span style="font-size: 32px; font-weight: 600; color: #ffffff;">Título principal</span><span style="font-size: 11px; color: #8d8a99; font-family: 'Inter', sans-serif;">32px · 600</span></div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;"><span style="font-size: 24px; font-weight: 600; color: #e1e1e6;">Título de seção</span><span style="font-size: 11px; color: #8d8a99; font-family: 'Inter', sans-serif;">24px · 600</span></div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;"><span style="font-size: 16px; color: #e1e1e6;">Corpo de texto</span><span style="font-size: 11px; color: #8d8a99; font-family: 'Inter', sans-serif;">16px · 400</span></div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px;"><span style="font-size: 13px; color: #8d8a99;">Metadados · 00/00/0000</span><span style="font-size: 11px; color: #8d8a99; font-family: 'Inter', sans-serif;">13px · 400</span></div>
+          </div>
+        </div>
+        <!-- Componentes -->
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: #8d8a99; margin: 0; font-weight: 600;">Componentes</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; font-family: 'Quicksand', sans-serif;">
+            <button style="background: #8257e6; color: #ffffff; border: none; border-radius: 6px; padding: 10px 20px; font-size: 14px; font-weight: 600; font-family: 'Quicksand', sans-serif; cursor: pointer;">Voltar a home</button>
+            <button style="background: #8257e6; color: #ffffff; border: none; border-radius: 6px; padding: 6px 16px; font-size: 12px; font-weight: 600; font-family: 'Quicksand', sans-serif; cursor: pointer;">Ler notícia</button>
+            <span style="background: #8257e6; color: #ffffff; border-radius: 4px; padding: 4px 14px; font-size: 12px; font-weight: 500;">Lorem</span>
+            <span style="border: 1px solid #8257e6; color: #c7b7f7; border-radius: 999px; padding: 6px 18px; font-size: 13px; font-weight: 600;">Minha conta</span>
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <span style="width: 32px; height: 32px; border: 1px solid #8257e6; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #ffffff; background: rgba(130,87,230,0.25);">1</span>
+              <span style="width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #8d8a99;">2</span>
+              <span style="font-size: 13px; color: #8d8a99;">…</span>
+              <span style="width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #8d8a99;">10</span>
+            </div>
+            <div style="flex: 1; min-width: 220px; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #1e1b2e; border-radius: 8px; padding: 12px 16px;">
+              <span style="font-size: 13px; color: #8d8a99;">Quer ajuda na procura? Pesquise aqui</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8d8a99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Telas -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #6b6b5f; margin: 0;">Telas</p>
+      <div class="cs-shots" style="display: grid; grid-template-columns: 1fr; gap: 24px;">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #0e0e0e; margin: 0;">01 · Home — destaques e notícias recentes</p>
+          <div style="border-radius: 16px; border: 1px solid rgba(14,14,14,0.12); background: #14121f; overflow: hidden;">
+            <img src="assets/naped/home.png" alt="Home do Naped" style="width: 100%; display: block;">
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #0e0e0e; margin: 0;">02 · Categoria Animes — busca e paginação</p>
+          <div style="border-radius: 16px; border: 1px solid rgba(14,14,14,0.12); background: #14121f; overflow: hidden;">
+            <img src="assets/naped/animes.png" alt="Página de Animes com guia de pesquisa" style="width: 100%; display: block;">
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #0e0e0e; margin: 0;">03 · Leitura de notícia</p>
+          <div style="border-radius: 16px; border: 1px solid rgba(14,14,14,0.12); background: #14121f; overflow: hidden;">
+            <img src="assets/naped/noticia.png" alt="Página de notícia" style="width: 100%; display: block;">
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #0e0e0e; margin: 0;">04 · Página 404 — desktop e mobile</p>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="border-radius: 16px; border: 1px solid rgba(14,14,14,0.12); background: #14121f; overflow: hidden;">
+              <img src="assets/naped/404-desktop.png" alt="Página 404 desktop" style="width: 100%; display: block;">
+            </div>
+            <div style="border-radius: 16px; border: 1px solid rgba(14,14,14,0.12); background: #14121f; overflow: hidden; max-width: 280px;">
+              <img src="assets/naped/404-mobile.jpg" alt="Página 404 mobile" style="width: 100%; display: block;">
+            </div>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: #6b6b5f; margin: 0;">"Ups! Você chegou no espaço… volte para o mundo nerd!" — o estado de erro mantém a personalidade do produto.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="border-top: 1px solid rgba(14,14,14,0.12); padding-top: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+      <p style="font-size: 12px; color: #6b6b5f; margin: 0;">© 2026 Laysa Santiago Alfredo</p>
+      <a href="Portfolio Responsivo.dc.html" style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; border: 1px solid #0e0e0e; border-radius: 999px; padding: 10px 20px; color: #0e0e0e; transition: all 0.2s;" style-hover="background: #0e0e0e; color: #f5f4f0;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+        Voltar
+      </a>
+    </div>
+
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>

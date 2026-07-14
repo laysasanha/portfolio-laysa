@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Instrument+Serif:ital@0;1&family=Palanquin:wght@400;700&display=swap" rel="stylesheet">
+<style>
+html, body { margin: 0; padding: 0; background: #f5f4f0; scroll-behavior: smooth; }
+a { color: #0e0e0e; text-decoration: none; }
+a:hover { color: #6b6b5f; }
+@keyframes pulse-dot { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.7); opacity: 0.5; } }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-33.333%); } }
+@keyframes float0 { 0%,100% { transform: rotate(-2deg) translateY(0); } 50% { transform: rotate(-2deg) translateY(-10px); } }
+@keyframes float1 { 0%,100% { transform: rotate(1.5deg) translateY(0); } 50% { transform: rotate(1.5deg) translateY(-8px); } }
+@keyframes float2 { 0%,100% { transform: rotate(-1deg) translateY(0); } 50% { transform: rotate(-1deg) translateY(-12px); } }
+@keyframes float3 { 0%,100% { transform: rotate(2deg) translateY(0); } 50% { transform: rotate(2deg) translateY(-9px); } }
+@keyframes float4 { 0%,100% { transform: rotate(-1.5deg) translateY(0); } 50% { transform: rotate(-1.5deg) translateY(-11px); } }
+@keyframes float5 { 0%,100% { transform: rotate(1deg) translateY(0); } 50% { transform: rotate(1deg) translateY(-7px); } }
+/* ── Responsive breakpoint rules (cannot be inline) ── */
+@media (max-width: 767px) {
+  .d-only { display: none !important; }
+}
+@media (min-width: 768px) {
+  .m-only { display: none !important; }
+  .main-col { margin-left: 176px; }
+  .sec-pad { padding-left: 64px !important; padding-right: 64px !important; }
+  .rule { margin-left: 64px !important; margin-right: 64px !important; }
+  .hero-h1 { font-size: clamp(2.8rem, 8vw, 7.5rem) !important; line-height: 0.92 !important; }
+  .hero-greet { margin-bottom: 24px !important; }
+  .hero-cta { margin-top: 64px !important; }
+  .sec-y { padding-top: 80px !important; padding-bottom: 80px !important; }
+  .sec-label-mb { margin-bottom: 48px !important; }
+  .case-row { flex-direction: row !important; }
+  .case-body { padding: 48px !important; }
+  .case-title { font-size: 24px !important; }
+  .case-strip { width: 200px !important; height: auto !important; }
+  .case-num { font-size: 10rem !important; padding-right: 16px !important; }
+  .about-head { padding-top: 48px !important; padding-bottom: 48px !important; }
+  .two-col { grid-template-columns: 1fr 1fr !important; gap: 80px !important; }
+  .exp-row { display: grid !important; grid-template-columns: 220px 1fr; gap: 48px !important; }
+  .skills-grid { grid-template-columns: repeat(3, 1fr) !important; column-gap: 48px !important; }
+  .esp-row { flex-direction: row !important; }
+  .esp-img { width: 340px !important; height: 280px !important; }
+  .esp-body { padding: 40px !important; }
+  .pill-abs { position: absolute; display: block !important; }
+  .pill-pos-0 { top: 4%; left: 62%; animation: float0 4.2s ease-in-out infinite; }
+  .pill-pos-1 { top: 22%; left: 6%; animation: float1 3.8s ease-in-out infinite 0.6s; }
+  .pill-pos-2 { top: 39%; left: 70%; animation: float2 4.5s ease-in-out infinite 1.1s; }
+  .pill-pos-3 { top: 57%; left: 2%; animation: float3 3.6s ease-in-out infinite 0.3s; }
+  .pill-pos-4 { top: 63%; left: 55%; animation: float4 4.8s ease-in-out infinite 0.9s; }
+  .pill-pos-5 { top: 82%; left: 28%; animation: float5 4.0s ease-in-out infinite 1.4s; }
+}
+</style>
+</helmet>
+
+<div data-screen-label="Portfolio Web Responsivo" style="width: 100%; background: #f5f4f0; color: #0e0e0e; font-family: 'Inter', sans-serif; position: relative; min-height: 100vh;">
+
+  <!-- ══ Top bar ══════════════════════════════════════ -->
+  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; border-bottom: 1px solid rgba(14,14,14,0.12); background: #f5f4f0; height: 48px; display: flex; align-items: center;">
+
+    <!-- Mobile: logo + pill + botões -->
+    <div class="m-only" style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0 16px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div style="width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; background: #0e0e0e; color: #f5f4f0;">LS</div>
+        <span style="display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 4px 10px; border: 1.5px solid rgba(220,60,60,0.35); background: rgba(255,245,245,0.85); backdrop-filter: blur(8px);">
+          <span style="position: relative; display: flex; align-items: center; justify-content: center; width: 6px; height: 6px;">
+            <span style="position: absolute; display: inline-block; width: 6px; height: 6px; border-radius: 999px; background: #e03030; animation: pulse-dot 1.8s ease-in-out infinite;"></span>
+            <span style="position: relative; display: inline-block; width: 6px; height: 6px; border-radius: 999px; background: #e03030;"></span>
+          </span>
+          <span style="font-size: 9px; font-weight: 500; color: #c02020;">{{ t.open }}</span>
+        </span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button onClick="{{ toggleLang }}" style="display: flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; border: 1px solid rgba(14,14,14,0.12); background: transparent; color: #0e0e0e; font-family: 'Inter', sans-serif; cursor: pointer;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+          {{ langBtn }}
+        </button>
+        <button onClick="{{ toggleMenu }}" style="width: 28px; height: 28px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); display: flex; align-items: center; justify-content: center; background: transparent; color: #0e0e0e; cursor: pointer;">
+          <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+          </sc-if>
+          <sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+          </sc-if>
+        </button>
+      </div>
+    </div>
+
+    <!-- Desktop: marquee + open to work + toggles -->
+    <div class="d-only" style="display: flex; flex: 1; align-items: center; height: 100%; overflow: hidden;">
+      <div style="display: flex; gap: 48px; white-space: nowrap; font-size: 12px; font-weight: 500; letter-spacing: 0.1em; color: #6b6b5f; text-transform: uppercase; animation: marquee 30s linear infinite;">
+        <sc-for list="{{ marqueeItems }}" as="mi" hint-placeholder-count="10">
+          <span style="flex-shrink: 0;">{{ mi }}</span>
+        </sc-for>
+      </div>
+    </div>
+    <div class="d-only" style="display: flex; align-items: center; gap: 12px; padding: 0 16px; border-left: 1px solid rgba(14,14,14,0.12); flex-shrink: 0; height: 100%;">
+      <span style="display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 4px 12px; border: 1.5px solid rgba(220,60,60,0.35); background: rgba(255,245,245,0.85); backdrop-filter: blur(8px);">
+        <span style="position: relative; display: flex; align-items: center; justify-content: center; width: 6px; height: 6px;">
+          <span style="position: absolute; display: inline-block; width: 6px; height: 6px; border-radius: 999px; background: #e03030; animation: pulse-dot 1.8s ease-in-out infinite;"></span>
+          <span style="position: relative; display: inline-block; width: 6px; height: 6px; border-radius: 999px; background: #e03030;"></span>
+        </span>
+        <span style="font-size: 10px; font-weight: 500; color: #c02020;">{{ t.open }}</span>
+      </span>
+      <button onClick="{{ toggleLang }}" style="display: flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; border: 1px solid rgba(14,14,14,0.12); background: transparent; color: #0e0e0e; font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.15s;" style-hover="background: #0e0e0e; color: #f5f4f0;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+        {{ langBtn }}
+      </button>
+    </div>
+  </header>
+
+  <!-- ══ Mobile menu drawer ═══════════════════════════ -->
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="m-only" style="position: fixed; inset: 0; z-index: 40; background: #f5f4f0; padding: 48px 24px 0; display: flex; flex-direction: column; gap: 8px;">
+      <div style="padding-top: 32px; display: flex; flex-direction: column; gap: 4px;">
+        <sc-for list="{{ navItems }}" as="nav" hint-placeholder-count="7">
+          <button onClick="{{ nav.go }}" style="text-align: left; font-size: 24px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.025em; padding: 12px 0; border: none; border-bottom: 1px solid rgba(14,14,14,0.12); background: transparent; color: #0e0e0e; font-family: 'Inter', sans-serif; cursor: pointer;">{{ nav.label }}</button>
+        </sc-for>
+      </div>
+      <div style="margin-top: auto; padding-bottom: 32px; display: flex; gap: 24px;">
+        <a href="https://www.behance.net/laytube" target="_blank" rel="noopener noreferrer" style="font-size: 14px; color: #6b6b5f;">Behance ↗</a>
+        <a href="https://www.linkedin.com/in/laysa-santiago-alfredo/" target="_blank" rel="noopener noreferrer" style="font-size: 14px; color: #6b6b5f;">LinkedIn ↗</a>
+        <a href="https://github.com/laysasanha" target="_blank" rel="noopener noreferrer" style="font-size: 14px; color: #6b6b5f;">GitHub ↗</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ══ Desktop sidebar ══════════════════════════════ -->
+  <aside class="d-only" style="position: fixed; left: 0; top: 48px; bottom: 0; width: 176px; border-right: 1px solid rgba(14,14,14,0.12); background: #f5f4f0; display: flex; flex-direction: column; justify-content: space-between; padding: 32px 20px; z-index: 40; box-sizing: border-box;">
+    <div>
+      <div style="width: 32px; height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; margin-bottom: 32px; background: #0e0e0e; color: #f5f4f0;">LS</div>
+      <nav style="display: flex; flex-direction: column; gap: 4px;">
+        <sc-for list="{{ navItems }}" as="nav" hint-placeholder-count="7">
+          <button onClick="{{ nav.go }}" style="text-align: left; font-size: 12px; color: #6b6b5f; padding: 4px 0; letter-spacing: 0.025em; border: none; background: transparent; font-family: 'Inter', sans-serif; cursor: pointer; transition: color 0.15s;" style-hover="color: #0e0e0e;">{{ nav.label }}</button>
+        </sc-for>
+      </nav>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <a href="https://www.behance.net/laytube" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: #6b6b5f; text-transform: uppercase; letter-spacing: 0.08em;">Behance ↗</a>
+      <a href="https://www.linkedin.com/in/laysa-santiago-alfredo/" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: #6b6b5f; text-transform: uppercase; letter-spacing: 0.08em;">LinkedIn ↗</a>
+      <a href="https://github.com/laysasanha" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: #6b6b5f; text-transform: uppercase; letter-spacing: 0.08em;">GitHub ↗</a>
+      <p style="font-size: 10px; color: #6b6b5f; margin: 4px 0 0;">© 2026<br>Laysa Santiago</p>
+    </div>
+  </aside>
+
+  <!-- ══ Main ═════════════════════════════════════════ -->
+  <main class="main-col" style="padding-top: 48px; min-height: 100vh;">
+
+    <!-- ── Hero ── -->
+    <section id="hero" class="sec-pad" style="min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 80px 20px; position: relative; box-sizing: border-box;">
+      <p class="hero-greet" style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.28em; color: #6b6b5f; margin: 0 0 16px;">{{ t.kicker }}</p>
+
+      <div style="position: relative; max-width: 820px;">
+        <h1 class="hero-h1" style="font-family: 'Inter', sans-serif; font-weight: 900; line-height: 0.88; letter-spacing: -0.05em; text-transform: uppercase; color: #0e0e0e; font-size: clamp(2.4rem, 12vw, 3.8rem); margin: 0;">
+          {{ t.h1a }}<br>
+          <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; text-transform: none; font-size: 0.92em;">{{ t.h1b }}</span><br>
+          {{ t.h1c }}<br>
+          <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; text-transform: none; font-size: 0.92em;">{{ t.h1d }}</span> {{ t.h1e }}<br>
+          {{ t.h1f }}
+        </h1>
+
+        <!-- Pills flutuantes — desktop -->
+        <div class="d-only pill-abs pill-pos-0"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.02em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; display: block; background: rgba(100,210,60,0.78); color: #0e2806; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 4px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);">DESIGN SYSTEMS</span></div>
+        <div class="d-only pill-abs pill-pos-1"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.02em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; display: block; background: rgba(255,115,25,0.80); color: #1e0800; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 4px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);">ESTRATÉGIA</span></div>
+        <div class="d-only pill-abs pill-pos-2"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.02em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; display: block; background: rgba(40,145,255,0.78); color: #ffffff; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 4px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);">PROTOTIPAÇÃO</span></div>
+        <div class="d-only pill-abs pill-pos-3"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.02em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; display: block; background: rgba(155,70,255,0.78); color: #ffffff; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 4px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);">FRONT-END AWARE</span></div>
+        <div class="d-only pill-abs pill-pos-4"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.02em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; display: block; background: rgba(230,60,170,0.75); color: #ffffff; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 4px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);">UX RESEARCH</span></div>
+        <div class="d-only pill-abs pill-pos-5"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.02em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; display: block; background: rgba(240,195,20,0.80); color: #1e1600; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 4px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);">FIGMA EXPERT</span></div>
+      </div>
+
+      <!-- Pills em wrap — mobile -->
+      <div class="m-only" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;">
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.02em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; transform: rotate(-2deg); background: rgba(100,210,60,0.78); color: #0e2806; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 4px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);">DESIGN SYSTEMS</span>
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.02em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; transform: rotate(1.5deg); background: rgba(255,115,25,0.80); color: #1e0800; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 4px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);">ESTRATÉGIA</span>
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.02em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; transform: rotate(-1deg); background: rgba(40,145,255,0.78); color: #ffffff; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 4px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);">PROTOTIPAÇÃO</span>
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.02em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; transform: rotate(2deg); background: rgba(155,70,255,0.78); color: #ffffff; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 4px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);">FRONT-END AWARE</span>
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.02em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; transform: rotate(-1.5deg); background: rgba(230,60,170,0.75); color: #ffffff; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 4px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);">UX RESEARCH</span>
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.02em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; transform: rotate(1deg); background: rgba(240,195,20,0.80); color: #1e1600; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 4px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.6);">FIGMA EXPERT</span>
+      </div>
+
+      <div class="hero-cta" style="margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px;">
+        <button onClick="{{ goCases }}" style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid #0e0e0e; border-radius: 999px; padding: 10px 20px; font-size: 14px; font-weight: 500; background: transparent; color: #0e0e0e; font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.2s;" style-hover="background: #0e0e0e; color: #f5f4f0;">
+          {{ t.seeMore }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+        </button>
+        <a href="uploads/Curriculo_Laysa_Santiago_Alfredo.pdf" download="Curriculo_Laysa_Santiago_Alfredo.pdf" style="display: inline-flex; align-items: center; gap: 8px; background: #0e0e0e; color: #f5f4f0; border-radius: 999px; padding: 10px 20px; font-size: 14px; font-weight: 500; transition: opacity 0.2s;" style-hover="opacity: 0.8; color: #f5f4f0;">
+          {{ t.downloadCV }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+        </a>
+      </div>
+    </section>
+
+    <div class="rule" style="height: 1px; background: rgba(14,14,14,0.12); margin: 0 20px;"></div>
+
+    <!-- ── Case Studies ── -->
+    <section id="cases" class="sec-pad sec-y" style="padding: 40px 20px;">
+      <p class="sec-label-mb" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: #6b6b5f; margin: 0 0 32px;">{{ t.secCases }}</p>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <sc-for list="{{ cases }}" as="c" hint-placeholder-count="5">
+          <div onClick="{{ c.open }}" style="border-radius: 16px; overflow: hidden; cursor: pointer; border: 1px solid rgba(14,14,14,0.12); transition: transform 0.25s ease, box-shadow 0.25s ease;" style-hover="transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.18);">
+            <div class="case-row" style="display: flex; flex-direction: column;">
+              <div class="case-body" style="flex: 1; padding: 32px; display: flex; flex-direction: column; gap: 24px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span style="font-size: 12px; font-weight: 500; color: #6b6b5f; font-variant-numeric: tabular-nums;">{{ c.number }}</span>
+                  <span style="width: 1px; height: 12px; background: rgba(14,14,14,0.12);"></span>
+                  <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <sc-for list="{{ c.tags }}" as="tag" hint-placeholder-count="3">
+                      <span style="font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); color: #6b6b5f;">{{ tag }}</span>
+                    </sc-for>
+                  </div>
+                </div>
+                <h3 class="case-title" style="font-size: 20px; font-weight: 900; line-height: 1.375; letter-spacing: -0.025em; color: #0e0e0e; margin: 0; font-family: 'Inter', sans-serif;">{{ c.title }}</h3>
+                <p style="font-size: 14px; line-height: 2; color: #6b6b5f; max-width: 512px; margin: 0;">{{ c.desc }}</p>
+                <span style="font-size: 12px; font-weight: 600; color: #0e0e0e; display: flex; align-items: center; gap: 6px; width: fit-content;">{{ t.viewProject }}</span>
+              </div>
+              <div class="case-strip" style="position: relative; width: 100%; height: 128px; flex-shrink: 0; display: flex; align-items: flex-end; justify-content: flex-end; overflow: hidden; background: {{ c.mockupBg }};">
+                <span class="case-num" style="font-size: 8rem; font-weight: 900; line-height: 1; user-select: none; padding-right: 16px; padding-bottom: 8px; opacity: 0.2; color: {{ c.mockupAccent }}; font-family: 'Inter', sans-serif;">{{ c.number }}</span>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- Outros projetos -->
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: #6b6b5f; margin: 48px 0 24px;">{{ t.secOthers }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px;">
+        <sc-for list="{{ otherCases }}" as="oc" hint-placeholder-count="4">
+          <div onClick="{{ oc.open }}" style="border: 1px solid rgba(14,14,14,0.12); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; background: #f5f4f0;" style-hover="transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.12);">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <span style="font-size: 11px; font-weight: 500; color: #6b6b5f; font-variant-numeric: tabular-nums;">{{ oc.number }}</span>
+              <span style="font-size: 14px; color: #0e0e0e;">→</span>
+            </div>
+            <h3 style="font-size: 16px; font-weight: 900; letter-spacing: -0.025em; color: #0e0e0e; margin: 0; font-family: 'Inter', sans-serif;">{{ oc.title }}</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <sc-for list="{{ oc.tags }}" as="tag" hint-placeholder-count="3">
+                <span style="font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); color: #6b6b5f;">{{ tag }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <div class="rule" style="height: 1px; background: rgba(14,14,14,0.12); margin: 0 20px;"></div>
+
+    <!-- ── Sobre ── -->
+    <section id="sobre" class="sec-y" style="padding: 40px 0;">
+      <div class="sec-pad" style="padding: 0 20px; margin-bottom: 40px;">
+        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: #6b6b5f; margin: 0;">{{ t.secAbout }}</p>
+      </div>
+      <div class="sec-pad about-head" style="border-top: 1px solid rgba(14,14,14,0.12); border-bottom: 1px solid rgba(14,14,14,0.12); padding: 32px 20px;">
+        <p style="font-size: clamp(2rem, 7vw, 5.5rem); font-weight: 900; line-height: 0.92; letter-spacing: -0.05em; text-transform: uppercase; color: #0e0e0e; margin: 0; font-family: 'Inter', sans-serif;">
+          {{ t.aboutH1 }}<br>
+          <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; text-transform: none; font-size: 0.88em;">{{ t.aboutH2 }}</span>
+        </p>
+      </div>
+      <div class="sec-pad two-col" style="padding: 0 20px; margin-top: 40px; display: grid; grid-template-columns: 1fr; gap: 32px;">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="width: 220px; height: 260px;">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="foto-perfil" shape="rounded" radius="16" src="assets/foto-laysa.png" placeholder="Arraste sua foto aqui" hint-size="220px,260px"></x-import>
+          </div>
+          <p style="font-size: 16px; line-height: 1.85; color: #0e0e0e; margin: 0;">{{ t.aboutP1 }}</p>
+          <p style="font-size: 16px; line-height: 1.85; color: #6b6b5f; margin: 0;">{{ t.aboutP2 }}</p>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 32px;">
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <sc-for list="{{ aboutChips }}" as="chip" hint-placeholder-count="8">
+              <span style="font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); color: #6b6b5f;">{{ chip }}</span>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 8px; border-top: 1px solid rgba(14,14,14,0.12);">
+            <a href="tel:+5548998310464" style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #6b6b5f;" style-hover="color: #0e0e0e;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              (48) 99831-0464
+            </a>
+            <a href="mailto:laysatb@gmail.com" style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #6b6b5f;" style-hover="color: #0e0e0e;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+              laysatb@gmail.com
+            </a>
+            <div style="display: flex; gap: 16px; margin-top: 4px;">
+              <a href="https://www.linkedin.com/in/laysa-santiago-alfredo/" target="_blank" rel="noopener noreferrer" style="font-size: 12px; font-weight: 600; color: #0e0e0e;" style-hover="color: #6b6b5f;">LinkedIn ↗</a>
+              <a href="https://www.behance.net/laytube" target="_blank" rel="noopener noreferrer" style="font-size: 12px; font-weight: 600; color: #0e0e0e;" style-hover="color: #6b6b5f;">Behance ↗</a>
+              <a href="https://github.com/laysasanha" target="_blank" rel="noopener noreferrer" style="font-size: 12px; font-weight: 600; color: #0e0e0e;" style-hover="color: #6b6b5f;">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule" style="height: 1px; background: rgba(14,14,14,0.12); margin: 0 20px;"></div>
+
+    <!-- ── Especialidades ── -->
+    <section id="especialidades" class="sec-pad" style="padding: 40px 20px 0;">
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: #6b6b5f; margin: 0 0 32px;">{{ t.secEsp }}</p>
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ especialidades }}" as="esp" hint-placeholder-count="4">
+          <div style="position: sticky; will-change: transform; border-radius: 16px; overflow: hidden; margin-bottom: 16px; top: {{ esp.top }}; z-index: {{ esp.z }}; background: {{ esp.bg }}; transform-origin: top center;">
+            <div class="esp-row" style="display: flex; flex-direction: column; align-items: stretch;">
+              <div class="esp-body" style="flex: 1; padding: 24px; display: flex; flex-direction: column; justify-content: center; gap: 12px;">
+                <p style="color: #000000; line-height: 1.25; font-family: 'Palanquin', serif; font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.4rem); letter-spacing: -0.02em; margin: 0;">{{ esp.title }}</p>
+                <p style="color: rgba(0,0,0,0.8); line-height: 1.375; font-family: 'Palanquin', serif; font-weight: 400; font-size: clamp(0.9rem, 2vw, 1.1rem); margin: 0;">{{ esp.desc }}</p>
+              </div>
+              <div class="esp-img" style="width: 100%; height: 192px; flex-shrink: 0;">{{ esp.imgEl }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="height: 30vh;"></div>
+    </section>
+
+    <!-- ── Experiência ── -->
+    <section id="experiencia" class="sec-pad sec-y" style="padding: 40px 20px;">
+      <p class="sec-label-mb" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: #6b6b5f; margin: 0 0 40px;">{{ t.secExp }}</p>
+      <div style="display: flex; flex-direction: column; gap: 48px;">
+        <sc-for list="{{ experiences }}" as="exp" hint-placeholder-count="3">
+          <div class="exp-row" style="display: flex; flex-direction: column; gap: 16px;">
+            <div>
+              <h3 style="font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.025em; color: #0e0e0e; margin: 0; font-family: 'Inter', sans-serif;">{{ exp.role }}</h3>
+              <p style="font-size: 14px; margin: 2px 0 0; color: #6b6b5f; font-family: 'Instrument Serif', serif; font-style: italic;">{{ exp.org }}</p>
+              <p style="font-size: 12px; margin: 2px 0 0; color: #6b6b5f; font-weight: 500; letter-spacing: 0.025em;">{{ exp.period }}</p>
+            </div>
+            <ul style="display: flex; flex-direction: column; gap: 10px; list-style: none; margin: 0; padding: 0;">
+              <sc-for list="{{ exp.items }}" as="item" hint-placeholder-count="4">
+                <li style="display: flex; gap: 12px; font-size: 14px; line-height: 1.625; color: #0e0e0e;"><span style="color: #6b6b5f; flex-shrink: 0; margin-top: 2px;">—</span>{{ item }}</li>
+              </sc-for>
+            </ul>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <div class="rule" style="height: 1px; background: rgba(14,14,14,0.12); margin: 0 20px;"></div>
+
+    <!-- ── Competências ── -->
+    <section id="competencias" class="sec-pad sec-y" style="padding: 40px 20px;">
+      <p class="sec-label-mb" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: #6b6b5f; margin: 0 0 40px;">{{ t.secComp }}</p>
+      <div class="skills-grid" style="display: grid; grid-template-columns: 1fr; gap: 40px; align-items: start;">
+        <div>
+          <h3 style="font-size: 14px; font-weight: 700; margin: 0 0 20px; color: #0e0e0e; font-family: 'Inter', sans-serif;">{{ t.compUx }}</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <sc-for list="{{ skillsUx }}" as="skill" hint-placeholder-count="16">
+              <span style="font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 999px; background: #fbb2cb; color: #5a0028;">{{ skill }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 40px;">
+          <div>
+            <h3 style="font-size: 14px; font-weight: 700; margin: 0 0 20px; color: #0e0e0e; font-family: 'Inter', sans-serif;">{{ t.compDev }}</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <sc-for list="{{ skillsDev }}" as="skill" hint-placeholder-count="6">
+                <span style="font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 999px; background: #64c5fa; color: #003060;">{{ skill }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-size: 14px; font-weight: 700; margin: 0 0 20px; color: #0e0e0e; font-family: 'Inter', sans-serif;">{{ t.compTools }}</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <sc-for list="{{ skillsTools }}" as="skill" hint-placeholder-count="5">
+                <span style="font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 999px; background: #eee9b2; color: #3a3000;">{{ skill }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 40px;">
+          <div>
+            <h3 style="font-size: 14px; font-weight: 700; margin: 0 0 20px; color: #0e0e0e; font-family: 'Inter', sans-serif;">{{ t.compExtra }}</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <sc-for list="{{ skillsExtra }}" as="skill" hint-placeholder-count="3">
+                <span style="font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 999px; background: #ff4040; color: #ffffff;">{{ skill }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-size: 14px; font-weight: 700; margin: 0 0 20px; color: #0e0e0e; font-family: 'Inter', sans-serif;">{{ t.compLang }}</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 999px; background: #d4d4d4; color: #222222;">{{ t.techEnglish }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule" style="height: 1px; background: rgba(14,14,14,0.12); margin: 0 20px;"></div>
+
+    <!-- ── Formação ── -->
+    <section id="formacao" class="sec-pad sec-y" style="padding: 40px 20px;">
+      <p class="sec-label-mb" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: #6b6b5f; margin: 0 0 40px;">{{ t.secForm }}</p>
+      <div style="display: flex; flex-direction: column; gap: 32px;">
+        <div class="exp-row" style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <p style="font-size: 12px; font-weight: 500; color: #6b6b5f; letter-spacing: 0.025em; margin: 0;">{{ t.deg1date }}</p>
+            <p style="font-size: 14px; margin: 2px 0 0; color: #6b6b5f; font-family: 'Instrument Serif', serif; font-style: italic;">UNISUL</p>
+          </div>
+          <div>
+            <h3 style="font-size: 14px; font-weight: 900; color: #0e0e0e; margin: 0; font-family: 'Inter', sans-serif;">{{ t.deg1 }}</h3>
+            <p style="font-size: 14px; margin: 6px 0 0; color: #6b6b5f; line-height: 1.625;">{{ t.deg1desc }}</p>
+          </div>
+        </div>
+        <div class="exp-row" style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <p style="font-size: 12px; font-weight: 500; color: #6b6b5f; letter-spacing: 0.025em; margin: 0;">2018 – 2020</p>
+            <p style="font-size: 14px; margin: 2px 0 0; color: #6b6b5f; font-family: 'Instrument Serif', serif; font-style: italic;">Cedup Diomício Freitas</p>
+          </div>
+          <div>
+            <h3 style="font-size: 14px; font-weight: 900; color: #0e0e0e; margin: 0; font-family: 'Inter', sans-serif;">{{ t.deg2 }}</h3>
+            <p style="font-size: 14px; margin: 6px 0 0; color: #6b6b5f; line-height: 1.625;">{{ t.deg2desc }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer class="sec-pad" style="padding: 40px 20px; border-top: 1px solid rgba(14,14,14,0.12); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+      <p style="font-size: 12px; color: #6b6b5f; margin: 0;">© 2026 Laysa Santiago Alfredo — {{ t.role }}</p>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <a href="mailto:laysatb@gmail.com" style="font-size: 12px; color: #6b6b5f;" style-hover="color: #0e0e0e;">laysatb@gmail.com</a>
+        <a href="https://www.linkedin.com/in/laysa-santiago-alfredo/" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: #6b6b5f;" style-hover="color: #0e0e0e;">LinkedIn</a>
+        <a href="https://www.behance.net/laytube" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: #6b6b5f;" style-hover="color: #0e0e0e;">Behance</a>
+        <a href="https://github.com/laysasanha" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: #6b6b5f;" style-hover="color: #0e0e0e;">GitHub</a>
+        <button onClick="{{ goTop }}" aria-label="Voltar ao topo" style="margin-left: 8px; width: 32px; height: 32px; border-radius: 999px; border: 1px solid rgba(14,14,14,0.12); display: flex; align-items: center; justify-content: center; color: #6b6b5f; background: transparent; cursor: pointer; transition: all 0.2s;" style-hover="background: #0e0e0e; color: #f5f4f0; border-color: #0e0e0e;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg>
+        </button>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ── Back to top flutuante ── -->
+  <sc-if value="{{ showTop }}" hint-placeholder-val="{{ false }}">
+    <button onClick="{{ goTop }}" aria-label="Voltar ao topo" style="position: fixed; bottom: 24px; right: 24px; z-index: 50; width: 40px; height: 40px; border-radius: 999px; background: #0e0e0e; color: #f5f4f0; border: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s;" style-hover="transform: scale(1.1);">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg>
+    </button>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menuOpen: false, showTop: false, lang: localStorage.getItem("ls-portfolio-lang") || "PT" };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const show = window.scrollY > 400;
+      if (show !== this.state.showTop) this.setState({ showTop: show });
+    };
+    window.addEventListener("scroll", this._onScroll, { passive: true });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this._onScroll);
+  }
+
+  scrollToId(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 48;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+    this.setState({ menuOpen: false });
+  }
+
+  renderVals() {
+    const lang = this.state.lang;
+    const pt = lang === "PT";
+    const tx = {
+      PT: {
+        open: "Aberta a oportunidades", kicker: "Olá — sou Laysa · Product Designer",
+        h1a: "5+ ANOS", h1b: "moldando", h1c: "EXPERIÊNCIAS", h1d: "para", h1e: "USUÁRIOS", h1f: "REAIS.",
+        seeMore: "Ver mais", downloadCV: "Baixar CV",
+        secCases: "Case Studies", secOthers: "Outros projetos", viewProject: "Ver projeto →",
+        secAbout: "Resumo Profissional", aboutH1: "Do conceito", aboutH2: "ao produto em produção.",
+        aboutP1: "Sou Designer UI/UX com mais de 5 anos moldando produtos digitais que chegam a produção — sistemas financeiros, apps de sócio-torcedor e plataformas de eventos usadas no Brasil, Uruguai e Chile.",
+        aboutP2: "Atuo de ponta a ponta: pesquisa, fluxos, wireframes, prototipação de alta fidelidade e Design Systems. Conheço o lado do código (HTML, CSS, React, Next.js) o suficiente para conversar com dev e implementar quando precisa.",
+        secEsp: "Especialidades", secExp: "Experiência Profissional", secComp: "Competências", secForm: "Formação Acadêmica",
+        compUx: "UX/UI & Product Design", compDev: "Desenvolvimento", compTools: "Ferramentas", compExtra: "Conhecimentos Complementares", compLang: "Idiomas", techEnglish: "Inglês Técnico",
+        deg1date: "Concluído 2026", deg1: "Tecnólogo em Análise e Desenvolvimento de Sistemas", deg1desc: "Diploma em processo de emissão.",
+        deg2: "Técnico em Informática para Internet", deg2desc: "Foco em algoritmos, HTTP, bancos de dados relacionais e trabalho em equipe.",
+        role: "Product Designer",
+      },
+      EN: {
+        open: "Open to work", kicker: "Hi — I'm Laysa · Product Designer",
+        h1a: "5+ YEARS", h1b: "shaping", h1c: "EXPERIENCES", h1d: "for", h1e: "REAL", h1f: "USERS.",
+        seeMore: "See more", downloadCV: "Download CV",
+        secCases: "Case Studies", secOthers: "Other projects", viewProject: "View project →",
+        secAbout: "Professional Summary", aboutH1: "From concept", aboutH2: "to product in production.",
+        aboutP1: "I'm a UI/UX Designer with 5+ years shaping digital products that ship — financial systems, fan-membership apps and event platforms used across Brazil, Uruguay and Chile.",
+        aboutP2: "I work end to end: research, flows, wireframes, high-fidelity prototyping and Design Systems. I know enough code (HTML, CSS, React, Next.js) to talk to devs and implement when needed.",
+        secEsp: "Specialties", secExp: "Work Experience", secComp: "Skills", secForm: "Education",
+        compUx: "UX/UI & Product Design", compDev: "Development", compTools: "Tools", compExtra: "Complementary Knowledge", compLang: "Languages", techEnglish: "Technical English",
+        deg1date: "Completed 2026", deg1: "Associate Degree in Systems Analysis and Development", deg1desc: "Diploma being issued.",
+        deg2: "Technical Degree in Internet Computing", deg2desc: "Focus on algorithms, HTTP, relational databases and teamwork.",
+        role: "Product Designer",
+      },
+    };
+    const navDefs = pt ? [
+      ["Início", "hero"], ["Case Studies", "cases"], ["Sobre", "sobre"],
+      ["Especialidades", "especialidades"], ["Experiência", "experiencia"],
+      ["Competências", "competencias"], ["Formação", "formacao"],
+    ] : [
+      ["Home", "hero"], ["Case Studies", "cases"], ["About", "sobre"],
+      ["Specialties", "especialidades"], ["Experience", "experiencia"],
+      ["Skills", "competencias"], ["Education", "formacao"],
+    ];
+    const marqueeBase = ["UX/UI Design","Product Design","Design Systems","Prototipação","UX Research","Figma","Front-End","Sócio-Torcedor","Sistemas Financeiros","Atomic Design"];
+
+    return {
+      menuOpen: this.state.menuOpen,
+      menuClosed: !this.state.menuOpen,
+      showTop: this.state.showTop,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      t: tx[lang],
+      langBtn: pt ? "EN" : "PT",
+      toggleLang: () => {
+        const next = pt ? "EN" : "PT";
+        localStorage.setItem("ls-portfolio-lang", next);
+        this.setState({ lang: next });
+      },
+      goCases: () => this.scrollToId("cases"),
+      goTop: () => window.scrollTo({ top: 0, behavior: "smooth" }),
+      navItems: navDefs.map(([label, id]) => ({ label, go: () => this.scrollToId(id) })),
+      marqueeItems: [...marqueeBase, ...marqueeBase, ...marqueeBase],
+      aboutChips: ["UX Research","Design Systems","Figma","React","Prototipação","Atomic Design","WCAG","Next.js"],
+      cases: [
+        { href: "Case Sistema de Contas.dc.html", number: "01", title: "Sistema de Contas",
+          desc: pt ? "Plataforma financeira para produtoras — controle de entradas, saídas, solicitações de saque e fechamentos. Usada no Brasil, Uruguai e Chile." : "Financial platform for event producers — income, expenses, withdrawal requests and closings. Used in Brazil, Uruguay and Chile.",
+          tags: ["Web App","Mobile","Fintech"], mockupBg: "linear-gradient(160deg,#001a40,#0055cc)", mockupAccent: "#c0e8ff" },
+        { href: "Case MML Solucoes.dc.html", number: "02", title: "MML SOLUÇÕES",
+          desc: pt ? "Plataforma de monitoramento de servidores com status em tempo real, fluxos de onboarding multi-etapa e personalização de planos de infraestrutura." : "Server-monitoring platform with real-time status, multi-step onboarding flows and infrastructure plan customization.",
+          tags: ["Web App","Dashboard","B2B"], mockupBg: "linear-gradient(160deg,#082e6b,#0b4cad)", mockupAccent: "#c0d8ff" },
+        { href: "Case In Fit.dc.html", number: "03", title: "IN FIT",
+          desc: pt ? "Plataforma fitness completa — landing de conversão, cadastro com pagamento e dashboards de treino para alunos e funcionários." : "Complete fitness platform — conversion landing, sign-up with payment and workout dashboards for members and staff.",
+          tags: ["Web App","Fitness","Dashboard"], mockupBg: "linear-gradient(160deg,#121411,#008eff)", mockupAccent: "#ff5c00" },
+        { href: "Case Anime.dc.html", number: "04", title: "Ani.me",
+          desc: pt ? "Plataforma de streaming de animes — catálogo alfabético, player com sinopse e comentários, em desktop e mobile." : "Anime streaming platform — alphabetical catalog, player with synopsis and comments, on desktop and mobile.",
+          tags: ["Web","Mobile","Streaming"], mockupBg: "linear-gradient(160deg,#0a0e14,#2196f3)", mockupAccent: "#bfe3ff" },
+      ].map(c => ({ ...c, open: () => { if (c.href) window.location.href = c.href; } })),
+      otherCases: [
+        { href: "Case Naped.dc.html", number: "05", title: "Naped", tags: ["Web","Editorial","Design System"] },
+        { href: "Case Shopping App.dc.html", number: "06", title: "Shopping App", tags: ["Mobile","E-commerce","UI Design"] },
+        { href: "Case AgroGestor.dc.html", number: "07", title: "AgroGestor", tags: ["Mobile","AgTech","UX Research"] },
+        { href: "Case Portfolio v1.dc.html", number: "08", title: pt ? "Portfólio v1.0" : "Portfolio v1.0", tags: ["Figma","Branding","Style Guide"] },
+      ].map(c => ({ ...c, open: () => { if (c.href) window.location.href = c.href; } })),
+      especialidades: [
+        { bg: "#fbb2cb", title: "UX/UI Design", desc: pt ? "Criando experiências digitais intuitivas, funcionais e centradas no usuário, desde a pesquisa e definição de fluxos até protótipos e interfaces de alta fidelidade." : "Creating intuitive, functional, user-centered digital experiences — from research and flow definition to high-fidelity prototypes and interfaces.", img: "assets/esp-uxui.png", top: "72px", z: 10 },
+        { bg: "#64c5fa", title: pt ? "Design de Interfaces (UI) & Figma" : "Interface Design (UI) & Figma", desc: pt ? "Desenvolvendo interfaces modernas, componentes reutilizáveis e Design Systems no Figma, garantindo consistência visual e uma melhor experiência de uso." : "Building modern interfaces, reusable components and Design Systems in Figma, ensuring visual consistency and a better experience.", img: "assets/esp-figma.png", top: "88px", z: 11 },
+        { bg: "#fa3633", title: "Front-end Development", desc: pt ? "Transformando designs em experiências reais através de conhecimentos em HTML, CSS, JavaScript, React e Next.js, facilitando a colaboração entre design e desenvolvimento." : "Turning designs into real experiences with HTML, CSS, JavaScript, React and Next.js — bridging design and development.", img: "assets/esp-frontend.png", top: "104px", z: 12 },
+        { bg: "#eee9b2", title: pt ? "Ilustração & Design Visual" : "Illustration & Visual Design", desc: pt ? "Criando elementos visuais, ilustrações e recursos gráficos que fortalecem a identidade dos produtos e tornam as experiências mais envolventes." : "Creating visual elements, illustrations and graphic assets that strengthen product identity and make experiences more engaging.", img: "assets/esp-ilustracao.png", top: "120px", z: 13 },
+      ].map(e => ({ ...e, imgEl: React.createElement("img", { src: e.img, alt: e.title, style: { width: "100%", height: "100%", objectFit: "cover", display: "block" } }) })),
+      experiences: pt ? [
+        { role: "UX/UI Designer Pleno", org: "Minha Entrada", period: "2022 – Atual", items: [
+          "Desenvolvimento de produtos digitais de nível macro — apps de sócio-torcedor (Criciúma, Figueirense), sistemas financeiros, plataformas de eventos e sistemas internos — usados no Brasil, Uruguai e Chile.",
+          "Participação na definição de estratégias de produto, alinhando negócio, tecnologia e experiência.",
+          "Treinamento e mentoria de estagiários de UX/UI.",
+          "Validação de layouts em produção junto ao time de desenvolvimento.",
+          "Condução de reformulação completa do app de sócio-torcedor com foco em conversão.",
+          "Criação de jornadas, fluxos, wireframes e protótipos de alta fidelidade no Figma.",
+          "Estruturação e evolução de Design Systems e bibliotecas de componentes.",
+          "Uso de IA (Claude Code, ChatGPT) para otimizar processos de design."
+        ]},
+        { role: "UX/UI Designer", org: "Minha Entrada", period: "2021 — Estágio", items: [
+          "Apoiei criação de apps e sistemas internos com wireframes e protótipos.",
+          "Participei de pesquisas e testes de usabilidade.",
+          "Identifiquei melhorias em fluxos de navegação existentes."
+        ]},
+        { role: "Programadora Web", org: "Minha Entrada", period: "2020 – 2021 — Estágio", items: [
+          "Desenvolvi funcionalidades para sistemas web e corrigi erros.",
+          "Trabalhei com HTML, CSS, JavaScript, Git e MVC."
+        ]},
+      ] : [
+        { role: "Mid-level UX/UI Designer", org: "Minha Entrada", period: "2022 – Present", items: [
+          "Designed large-scale digital products — fan-membership apps (Criciúma, Figueirense), financial systems, event platforms and internal tools — used in Brazil, Uruguay and Chile.",
+          "Helped define product strategy, aligning business, technology and experience.",
+          "Trained and mentored UX/UI interns.",
+          "Validated production layouts with the development team.",
+          "Led a full redesign of the fan-membership app focused on conversion.",
+          "Created journeys, flows, wireframes and high-fidelity prototypes in Figma.",
+          "Built and evolved Design Systems and component libraries.",
+          "Used AI (Claude Code, ChatGPT) to streamline design processes."
+        ]},
+        { role: "UX/UI Designer", org: "Minha Entrada", period: "2021 — Internship", items: [
+          "Supported apps and internal systems with wireframes and prototypes.",
+          "Took part in research and usability testing.",
+          "Identified improvements in existing navigation flows."
+        ]},
+        { role: "Web Developer", org: "Minha Entrada", period: "2020 – 2021 — Internship", items: [
+          "Built features for web systems and fixed bugs.",
+          "Worked with HTML, CSS, JavaScript, Git and MVC."
+        ]},
+      ],
+      skillsUx: ["UX Research","Design de Interfaces (UI)","User Flows","Jornada do Usuário","Wireframes","Prototipação","Design Systems","Componentização","Atomic Design","Arquitetura da Informação","Design Responsivo","Acessibilidade (WCAG)","Testes de Usabilidade","Scrum & Kanban","Estratégia de Produto","Mentoria de Equipe"],
+      skillsDev: ["HTML5","CSS3","JavaScript","React","Next.js","Git/GitHub"],
+      skillsTools: ["Figma","FigJam","Claude Code","ChatGPT","VS Code"],
+      skillsExtra: ["LGPD","Privacidade de Dados","Segurança da Informação"],
+    };
+  }
+}
+</script>
+</body>
+</html>
