@@ -60,8 +60,6 @@ a:hover { color: var(--muted); }
   .case-num { font-size: 10rem !important; padding-right: 16px !important; }
   .about-head { padding-top: 48px !important; padding-bottom: 48px !important; }
   .two-col { grid-template-columns: 1fr 1fr !important; gap: 80px !important; }
-  .exp-row { display: grid !important; grid-template-columns: 220px 1fr; gap: 48px !important; }
-  .skills-grid { grid-template-columns: repeat(3, 1fr) !important; column-gap: 48px !important; }
   .esp-row { flex-direction: row !important; }
   .esp-img { width: 340px !important; height: 280px !important; }
   .esp-body { padding: 40px !important; }
@@ -214,7 +212,7 @@ a:hover { color: var(--muted); }
           {{ t.seeMore }}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
         </button>
-        <a href="uploads/Curriculo_Laysa_Santiago_Alfredo.pdf" download="Curriculo_Laysa_Santiago_Alfredo.pdf" style="display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: var(--paper); border-radius: 999px; padding: 10px 20px; font-size: 14px; font-weight: 500; transition: opacity 0.2s;" style-hover="opacity: 0.8; color: var(--paper);">
+        <a href="{{ t.cvHref }}" download="{{ t.cvFileName }}" style="display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: var(--paper); border-radius: 999px; padding: 10px 20px; font-size: 14px; font-weight: 500; transition: opacity 0.2s;" style-hover="opacity: 0.8; color: var(--paper);">
           {{ t.downloadCV }}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
         </a>
@@ -300,10 +298,6 @@ a:hover { color: var(--muted); }
             </sc-for>
           </div>
           <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 8px; border-top: 1px solid rgba(var(--ink-rgb),0.12);">
-            <a href="tel:+5548998310464" style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted);" style-hover="color: var(--ink);">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-              (48) 99831-0464
-            </a>
             <a href="mailto:laysatb@gmail.com" style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted);" style-hover="color: var(--ink);">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
               laysatb@gmail.com
@@ -336,113 +330,12 @@ a:hover { color: var(--muted); }
           </div>
         </sc-for>
       </div>
-      <div style="height: 30vh;"></div>
-    </section>
-
-    <!-- ── Experiência ── -->
-    <section id="experiencia" class="sec-pad sec-y" style="padding: 40px 20px;">
-      <p class="sec-label-mb" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--muted); margin: 0 0 40px;">{{ t.secExp }}</p>
-      <div style="display: flex; flex-direction: column; gap: 48px;">
-        <sc-for list="{{ experiences }}" as="exp" hint-placeholder-count="3">
-          <div class="exp-row" style="display: flex; flex-direction: column; gap: 16px;">
-            <div>
-              <h3 style="font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.025em; color: var(--ink); margin: 0; font-family: 'Inter', sans-serif;">{{ exp.role }}</h3>
-              <p style="font-size: 14px; margin: 2px 0 0; color: var(--muted); font-family: 'Instrument Serif', serif; font-style: italic;">{{ exp.org }}</p>
-              <p style="font-size: 12px; margin: 2px 0 0; color: var(--muted); font-weight: 500; letter-spacing: 0.025em;">{{ exp.period }}</p>
-            </div>
-            <ul style="display: flex; flex-direction: column; gap: 10px; list-style: none; margin: 0; padding: 0;">
-              <sc-for list="{{ exp.items }}" as="item" hint-placeholder-count="4">
-                <li style="display: flex; gap: 12px; font-size: 14px; line-height: 1.625; color: var(--ink);"><span style="color: var(--muted); flex-shrink: 0; margin-top: 2px;">—</span>{{ item }}</li>
-              </sc-for>
-            </ul>
-          </div>
-        </sc-for>
-      </div>
-    </section>
-
-    <div class="rule" style="height: 1px; background: rgba(var(--ink-rgb),0.12); margin: 0 20px;"></div>
-
-    <!-- ── Competências ── -->
-    <section id="competencias" class="sec-pad sec-y" style="padding: 40px 20px;">
-      <p class="sec-label-mb" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--muted); margin: 0 0 40px;">{{ t.secComp }}</p>
-      <div class="skills-grid" style="display: grid; grid-template-columns: 1fr; gap: 40px; align-items: start;">
-        <div>
-          <h3 style="font-size: 14px; font-weight: 700; margin: 0 0 20px; color: var(--ink); font-family: 'Inter', sans-serif;">{{ t.compUx }}</h3>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <sc-for list="{{ skillsUx }}" as="skill" hint-placeholder-count="16">
-              <span style="font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 999px; background: #fbb2cb; color: #5a0028;">{{ skill }}</span>
-            </sc-for>
-          </div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 40px;">
-          <div>
-            <h3 style="font-size: 14px; font-weight: 700; margin: 0 0 20px; color: var(--ink); font-family: 'Inter', sans-serif;">{{ t.compDev }}</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-              <sc-for list="{{ skillsDev }}" as="skill" hint-placeholder-count="6">
-                <span style="font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 999px; background: #64c5fa; color: #003060;">{{ skill }}</span>
-              </sc-for>
-            </div>
-          </div>
-          <div>
-            <h3 style="font-size: 14px; font-weight: 700; margin: 0 0 20px; color: var(--ink); font-family: 'Inter', sans-serif;">{{ t.compTools }}</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-              <sc-for list="{{ skillsTools }}" as="skill" hint-placeholder-count="5">
-                <span style="font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 999px; background: #eee9b2; color: #3a3000;">{{ skill }}</span>
-              </sc-for>
-            </div>
-          </div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 40px;">
-          <div>
-            <h3 style="font-size: 14px; font-weight: 700; margin: 0 0 20px; color: var(--ink); font-family: 'Inter', sans-serif;">{{ t.compExtra }}</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-              <sc-for list="{{ skillsExtra }}" as="skill" hint-placeholder-count="3">
-                <span style="font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 999px; background: #ff4040; color: #ffffff;">{{ skill }}</span>
-              </sc-for>
-            </div>
-          </div>
-          <div>
-            <h3 style="font-size: 14px; font-weight: 700; margin: 0 0 20px; color: var(--ink); font-family: 'Inter', sans-serif;">{{ t.compLang }}</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-              <span style="font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 999px; background: #d4d4d4; color: #222222;">{{ t.techEnglish }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="rule" style="height: 1px; background: rgba(var(--ink-rgb),0.12); margin: 0 20px;"></div>
-
-    <!-- ── Formação ── -->
-    <section id="formacao" class="sec-pad sec-y" style="padding: 40px 20px;">
-      <p class="sec-label-mb" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--muted); margin: 0 0 40px;">{{ t.secForm }}</p>
-      <div style="display: flex; flex-direction: column; gap: 32px;">
-        <div class="exp-row" style="display: flex; flex-direction: column; gap: 12px;">
-          <div>
-            <p style="font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: 0.025em; margin: 0;">{{ t.deg1date }}</p>
-            <p style="font-size: 14px; margin: 2px 0 0; color: var(--muted); font-family: 'Instrument Serif', serif; font-style: italic;">UNISUL</p>
-          </div>
-          <div>
-            <h3 style="font-size: 14px; font-weight: 900; color: var(--ink); margin: 0; font-family: 'Inter', sans-serif;">{{ t.deg1 }}</h3>
-            <p style="font-size: 14px; margin: 6px 0 0; color: var(--muted); line-height: 1.625;">{{ t.deg1desc }}</p>
-          </div>
-        </div>
-        <div class="exp-row" style="display: flex; flex-direction: column; gap: 12px;">
-          <div>
-            <p style="font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: 0.025em; margin: 0;">2018 – 2020</p>
-            <p style="font-size: 14px; margin: 2px 0 0; color: var(--muted); font-family: 'Instrument Serif', serif; font-style: italic;">Cedup Diomício Freitas</p>
-          </div>
-          <div>
-            <h3 style="font-size: 14px; font-weight: 900; color: var(--ink); margin: 0; font-family: 'Inter', sans-serif;">{{ t.deg2 }}</h3>
-            <p style="font-size: 14px; margin: 6px 0 0; color: var(--muted); line-height: 1.625;">{{ t.deg2desc }}</p>
-          </div>
-        </div>
-      </div>
+      <div style="height: 15vh;"></div>
     </section>
 
     <!-- ── Footer ── -->
     <footer class="sec-pad" style="padding: 40px 20px; border-top: 1px solid rgba(var(--ink-rgb),0.12); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
-      <p style="font-size: 12px; color: var(--muted); margin: 0;">© 2026 Laysa Santiago Alfredo — {{ t.role }}</p>
+      <p style="font-size: 12px; color: var(--muted); margin: 0;">© 2026 Laysa Santiago Alfredo · {{ t.role }}</p>
       <div style="display: flex; align-items: center; gap: 20px;">
         <a href="mailto:laysatb@gmail.com" style="font-size: 12px; color: var(--muted);" style-hover="color: var(--ink);">laysatb@gmail.com</a>
         <a href="https://www.linkedin.com/in/laysa-santiago-alfredo/" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: var(--muted);" style-hover="color: var(--ink);">LinkedIn</a>
@@ -454,7 +347,7 @@ a:hover { color: var(--muted); }
 
   <!-- ── Back to top flutuante ── -->
   <sc-if value="{{ showTop }}" hint-placeholder-val="{{ false }}">
-    <button onClick="{{ goTop }}" aria-label="Voltar ao topo" style="position: fixed; bottom: 24px; right: 24px; z-index: 50; width: 40px; height: 40px; border-radius: 999px; background: var(--ink); color: var(--paper); border: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s;" style-hover="transform: scale(1.1);">
+    <button onClick="{{ goTop }}" aria-label="Voltar ao topo" style="position: fixed; bottom: 130px; right: 24px; z-index: 50; width: 40px; height: 40px; border-radius: 999px; background: var(--ink); color: var(--paper); border: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s;" style-hover="transform: scale(1.1);">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg>
     </button>
   </sc-if>
@@ -492,42 +385,36 @@ class Component extends DCLogic {
     const pt = lang === "PT";
     const tx = {
       PT: {
-        open: "Aberta a oportunidades", kicker: "Olá — sou Laysa · Product Designer",
+        open: "Aberta a oportunidades", kicker: "Olá, sou Laysa · Product Designer",
         h1a: "5+ ANOS", h1b: "moldando", h1c: "EXPERIÊNCIAS", h1d: "para", h1e: "USUÁRIOS", h1f: "REAIS.",
         seeMore: "Ver mais", downloadCV: "Baixar CV",
+        cvHref: "uploads/Curriculo_Laysa_Santiago_Alfredo.pdf", cvFileName: "Curriculo_Laysa_Santiago_Alfredo.pdf",
         secCases: "Case Studies", secOthers: "Outros projetos", viewProject: "Ver projeto →",
         secAbout: "Resumo Profissional", aboutH1: "Do conceito", aboutH2: "ao produto em produção.",
-        aboutP1: "Sou Designer UI/UX com mais de 5 anos moldando produtos digitais que chegam a produção — sistemas financeiros, apps de sócio-torcedor e plataformas de eventos usadas no Brasil, Uruguai e Chile.",
+        aboutP1: "Sou Designer UI/UX com mais de 5 anos moldando produtos digitais que chegam a produção: sistemas financeiros, apps de sócio-torcedor e plataformas de eventos usadas no Brasil, Uruguai e Chile.",
         aboutP2: "Atuo de ponta a ponta: pesquisa, fluxos, wireframes, prototipação de alta fidelidade e Design Systems. Conheço o lado do código (HTML, CSS, React, Next.js) o suficiente para conversar com dev e implementar quando precisa.",
-        secEsp: "Especialidades", secExp: "Experiência Profissional", secComp: "Competências", secForm: "Formação Acadêmica",
-        compUx: "UX/UI & Product Design", compDev: "Desenvolvimento", compTools: "Ferramentas", compExtra: "Conhecimentos Complementares", compLang: "Idiomas", techEnglish: "Inglês Técnico",
-        deg1date: "Concluído 2026", deg1: "Tecnólogo em Análise e Desenvolvimento de Sistemas", deg1desc: "Diploma em processo de emissão.",
-        deg2: "Técnico em Informática para Internet", deg2desc: "Foco em algoritmos, HTTP, bancos de dados relacionais e trabalho em equipe.",
+        secEsp: "Especialidades",
         role: "Product Designer",
       },
       EN: {
-        open: "Open to work", kicker: "Hi — I'm Laysa · Product Designer",
+        open: "Open to work", kicker: "Hi, I'm Laysa · Product Designer",
         h1a: "5+ YEARS", h1b: "shaping", h1c: "EXPERIENCES", h1d: "for", h1e: "REAL", h1f: "USERS.",
         seeMore: "See more", downloadCV: "Download CV",
+        cvHref: "uploads/Laysa_Santiago_Alfredo_Resume_EN.pdf", cvFileName: "Laysa_Santiago_Alfredo_Resume_EN.pdf",
         secCases: "Case Studies", secOthers: "Other projects", viewProject: "View project →",
         secAbout: "Professional Summary", aboutH1: "From concept", aboutH2: "to product in production.",
-        aboutP1: "I'm a UI/UX Designer with 5+ years shaping digital products that ship — financial systems, fan-membership apps and event platforms used across Brazil, Uruguay and Chile.",
+        aboutP1: "I'm a UI/UX Designer with 5+ years shaping digital products that ship: financial systems, fan-membership apps and event platforms used across Brazil, Uruguay and Chile.",
         aboutP2: "I work end to end: research, flows, wireframes, high-fidelity prototyping and Design Systems. I know enough code (HTML, CSS, React, Next.js) to talk to devs and implement when needed.",
-        secEsp: "Specialties", secExp: "Work Experience", secComp: "Skills", secForm: "Education",
-        compUx: "UX/UI & Product Design", compDev: "Development", compTools: "Tools", compExtra: "Complementary Knowledge", compLang: "Languages", techEnglish: "Technical English",
-        deg1date: "Completed 2026", deg1: "Associate Degree in Systems Analysis and Development", deg1desc: "Diploma being issued.",
-        deg2: "Technical Degree in Internet Computing", deg2desc: "Focus on algorithms, HTTP, relational databases and teamwork.",
+        secEsp: "Specialties",
         role: "Product Designer",
       },
     };
     const navDefs = pt ? [
       ["Início", "hero"], ["Case Studies", "cases"], ["Sobre", "sobre"],
-      ["Especialidades", "especialidades"], ["Experiência", "experiencia"],
-      ["Competências", "competencias"], ["Formação", "formacao"],
+      ["Especialidades", "especialidades"],
     ] : [
       ["Home", "hero"], ["Case Studies", "cases"], ["About", "sobre"],
-      ["Specialties", "especialidades"], ["Experience", "experiencia"],
-      ["Skills", "competencias"], ["Education", "formacao"],
+      ["Specialties", "especialidades"],
     ];
     const marqueeBase = ["UX/UI Design","Product Design","Design Systems","Prototipação","UX Research","Figma","Front-End","Sócio-Torcedor","Sistemas Financeiros","Atomic Design"];
 
@@ -556,75 +443,29 @@ class Component extends DCLogic {
       aboutChips: ["UX Research","Design Systems","Figma","React","Prototipação","Atomic Design","WCAG","Next.js"],
       cases: [
         { href: "Case Sistema de Contas.dc.html", number: "01", title: "Sistema de Contas",
-          desc: pt ? "Plataforma financeira para produtoras — controle de entradas, saídas, solicitações de saque e fechamentos. Usada no Brasil, Uruguai e Chile." : "Financial platform for event producers — income, expenses, withdrawal requests and closings. Used in Brazil, Uruguay and Chile.",
+          desc: pt ? "Plataforma financeira para produtoras, com controle de entradas, saídas, solicitações de saque e fechamentos. Usada no Brasil, Uruguai e Chile." : "Financial platform for event producers, covering income, expenses, withdrawal requests and closings. Used in Brazil, Uruguay and Chile.",
           tags: ["Web App","Mobile","Fintech"], mockupBg: "linear-gradient(160deg,#001a40,#0055cc)", mockupAccent: "#c0e8ff" },
         { href: "Case MML Solucoes.dc.html", number: "02", title: "MML SOLUÇÕES",
           desc: pt ? "Plataforma de monitoramento de servidores com status em tempo real, fluxos de onboarding multi-etapa e personalização de planos de infraestrutura." : "Server-monitoring platform with real-time status, multi-step onboarding flows and infrastructure plan customization.",
           tags: ["Web App","Dashboard","B2B"], mockupBg: "linear-gradient(160deg,#082e6b,#0b4cad)", mockupAccent: "#c0d8ff" },
         { href: "Case In Fit.dc.html", number: "03", title: "IN FIT",
-          desc: pt ? "Plataforma fitness completa — landing de conversão, cadastro com pagamento e dashboards de treino para alunos e funcionários." : "Complete fitness platform — conversion landing, sign-up with payment and workout dashboards for members and staff.",
+          desc: pt ? "Plataforma fitness completa, com landing de conversão, cadastro com pagamento e dashboards de treino para alunos e funcionários." : "Complete fitness platform, with conversion landing, sign-up with payment and workout dashboards for members and staff.",
           tags: ["Web App","Fitness","Dashboard"], mockupBg: "linear-gradient(160deg,#121411,#008eff)", mockupAccent: "#ff5c00" },
         { href: "Case Anime.dc.html", number: "04", title: "Ani.me",
-          desc: pt ? "Plataforma de streaming de animes — catálogo alfabético, player com sinopse e comentários, em desktop e mobile." : "Anime streaming platform — alphabetical catalog, player with synopsis and comments, on desktop and mobile.",
+          desc: pt ? "Plataforma de streaming de animes, com catálogo alfabético, player com sinopse e comentários, em desktop e mobile." : "Anime streaming platform, with alphabetical catalog, player with synopsis and comments, on desktop and mobile.",
           tags: ["Web","Mobile","Streaming"], mockupBg: "linear-gradient(160deg,#0a0e14,#2196f3)", mockupAccent: "#bfe3ff" },
       ].map(c => ({ ...c, open: () => { if (c.href) window.location.href = c.href; } })),
       otherCases: [
         { href: "Case Naped.dc.html", number: "05", title: "Naped", tags: ["Web","Editorial","Design System"] },
         { href: "Case Shopping App.dc.html", number: "06", title: "Shopping App", tags: ["Mobile","E-commerce","UI Design"] },
         { href: "Case AgroGestor.dc.html", number: "07", title: "AgroGestor", tags: ["Mobile","AgTech","UX Research"] },
-        { href: "Case Portfolio v1.dc.html", number: "08", title: pt ? "Portfólio v1.0" : "Portfolio v1.0", tags: ["Figma","Branding","Style Guide"] },
       ].map(c => ({ ...c, open: () => { if (c.href) window.location.href = c.href; } })),
       especialidades: [
-        { bg: "#fbb2cb", title: "UX/UI Design", desc: pt ? "Criando experiências digitais intuitivas, funcionais e centradas no usuário, desde a pesquisa e definição de fluxos até protótipos e interfaces de alta fidelidade." : "Creating intuitive, functional, user-centered digital experiences — from research and flow definition to high-fidelity prototypes and interfaces.", img: "assets/esp-uxui.png", top: "72px", z: 10 },
+        { bg: "#fbb2cb", title: "UX/UI Design", desc: pt ? "Criando experiências digitais intuitivas, funcionais e centradas no usuário, desde a pesquisa e definição de fluxos até protótipos e interfaces de alta fidelidade." : "Creating intuitive, functional, user-centered digital experiences, from research and flow definition to high-fidelity prototypes and interfaces.", img: "assets/esp-uxui.png", top: "72px", z: 10 },
         { bg: "#64c5fa", title: pt ? "Design de Interfaces (UI) & Figma" : "Interface Design (UI) & Figma", desc: pt ? "Desenvolvendo interfaces modernas, componentes reutilizáveis e Design Systems no Figma, garantindo consistência visual e uma melhor experiência de uso." : "Building modern interfaces, reusable components and Design Systems in Figma, ensuring visual consistency and a better experience.", img: "assets/esp-figma.png", top: "88px", z: 11 },
-        { bg: "#fa3633", title: "Front-end Development", desc: pt ? "Transformando designs em experiências reais através de conhecimentos em HTML, CSS, JavaScript, React e Next.js, facilitando a colaboração entre design e desenvolvimento." : "Turning designs into real experiences with HTML, CSS, JavaScript, React and Next.js — bridging design and development.", img: "assets/esp-frontend.png", top: "104px", z: 12 },
+        { bg: "#fa3633", title: "Front-end Development", desc: pt ? "Transformando designs em experiências reais através de conhecimentos em HTML, CSS, JavaScript, React e Next.js, facilitando a colaboração entre design e desenvolvimento." : "Turning designs into real experiences with HTML, CSS, JavaScript, React and Next.js, bridging design and development.", img: "assets/esp-frontend.png", top: "104px", z: 12 },
         { bg: "#eee9b2", title: pt ? "Ilustração & Design Visual" : "Illustration & Visual Design", desc: pt ? "Criando elementos visuais, ilustrações e recursos gráficos que fortalecem a identidade dos produtos e tornam as experiências mais envolventes." : "Creating visual elements, illustrations and graphic assets that strengthen product identity and make experiences more engaging.", img: "assets/esp-ilustracao.png", top: "120px", z: 13 },
       ].map(e => ({ ...e, imgEl: React.createElement("img", { src: e.img, alt: e.title, style: { width: "100%", height: "100%", objectFit: "cover", display: "block" } }) })),
-      experiences: pt ? [
-        { role: "UX/UI Designer Pleno", org: "Minha Entrada", period: "2022 – Atual", items: [
-          "Desenvolvimento de produtos digitais de nível macro — apps de sócio-torcedor (Criciúma, Figueirense), sistemas financeiros, plataformas de eventos e sistemas internos — usados no Brasil, Uruguai e Chile.",
-          "Participação na definição de estratégias de produto, alinhando negócio, tecnologia e experiência.",
-          "Treinamento e mentoria de estagiários de UX/UI.",
-          "Validação de layouts em produção junto ao time de desenvolvimento.",
-          "Condução de reformulação completa do app de sócio-torcedor com foco em conversão.",
-          "Criação de jornadas, fluxos, wireframes e protótipos de alta fidelidade no Figma.",
-          "Estruturação e evolução de Design Systems e bibliotecas de componentes.",
-          "Uso de IA (Claude Code, ChatGPT) para otimizar processos de design."
-        ]},
-        { role: "UX/UI Designer", org: "Minha Entrada", period: "2021 — Estágio", items: [
-          "Apoiei criação de apps e sistemas internos com wireframes e protótipos.",
-          "Participei de pesquisas e testes de usabilidade.",
-          "Identifiquei melhorias em fluxos de navegação existentes."
-        ]},
-        { role: "Programadora Web", org: "Minha Entrada", period: "2020 – 2021 — Estágio", items: [
-          "Desenvolvi funcionalidades para sistemas web e corrigi erros.",
-          "Trabalhei com HTML, CSS, JavaScript, Git e MVC."
-        ]},
-      ] : [
-        { role: "Mid-level UX/UI Designer", org: "Minha Entrada", period: "2022 – Present", items: [
-          "Designed large-scale digital products — fan-membership apps (Criciúma, Figueirense), financial systems, event platforms and internal tools — used in Brazil, Uruguay and Chile.",
-          "Helped define product strategy, aligning business, technology and experience.",
-          "Trained and mentored UX/UI interns.",
-          "Validated production layouts with the development team.",
-          "Led a full redesign of the fan-membership app focused on conversion.",
-          "Created journeys, flows, wireframes and high-fidelity prototypes in Figma.",
-          "Built and evolved Design Systems and component libraries.",
-          "Used AI (Claude Code, ChatGPT) to streamline design processes."
-        ]},
-        { role: "UX/UI Designer", org: "Minha Entrada", period: "2021 — Internship", items: [
-          "Supported apps and internal systems with wireframes and prototypes.",
-          "Took part in research and usability testing.",
-          "Identified improvements in existing navigation flows."
-        ]},
-        { role: "Web Developer", org: "Minha Entrada", period: "2020 – 2021 — Internship", items: [
-          "Built features for web systems and fixed bugs.",
-          "Worked with HTML, CSS, JavaScript, Git and MVC."
-        ]},
-      ],
-      skillsUx: ["UX Research","Design de Interfaces (UI)","User Flows","Jornada do Usuário","Wireframes","Prototipação","Design Systems","Componentização","Atomic Design","Arquitetura da Informação","Design Responsivo","Acessibilidade (WCAG)","Testes de Usabilidade","Scrum & Kanban","Estratégia de Produto","Mentoria de Equipe"],
-      skillsDev: ["HTML5","CSS3","JavaScript","React","Next.js","Git/GitHub"],
-      skillsTools: ["Figma","FigJam","Claude Code","ChatGPT","VS Code"],
-      skillsExtra: ["LGPD","Privacidade de Dados","Segurança da Informação"],
     };
   }
 }
