@@ -272,6 +272,27 @@ a:hover { color: var(--muted); }
 
     <div class="rule" style="height: 1px; background: rgba(var(--ink-rgb),0.12); margin: 0 20px;"></div>
 
+    <!-- ── Especialidades ── -->
+    <section id="especialidades" class="sec-pad" style="padding: 40px 20px 0;">
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--muted); margin: 0 0 32px;">{{ t.secEsp }}</p>
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ especialidades }}" as="esp" hint-placeholder-count="4">
+          <div style="position: sticky; will-change: transform; border-radius: 16px; overflow: hidden; margin-bottom: 16px; top: {{ esp.top }}; z-index: {{ esp.z }}; background: {{ esp.bg }}; transform-origin: top center;">
+            <div class="esp-row" style="display: flex; flex-direction: column; align-items: stretch;">
+              <div class="esp-body" style="flex: 1; padding: 24px; display: flex; flex-direction: column; justify-content: center; gap: 12px;">
+                <p style="color: #000000; line-height: 1.25; font-family: 'Palanquin', serif; font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.4rem); letter-spacing: -0.02em; margin: 0;">{{ esp.title }}</p>
+                <p style="color: rgba(0,0,0,0.8); line-height: 1.375; font-family: 'Palanquin', serif; font-weight: 400; font-size: clamp(0.9rem, 2vw, 1.1rem); margin: 0;">{{ esp.desc }}</p>
+              </div>
+              <div class="esp-img" style="width: 100%; height: 192px; flex-shrink: 0;">{{ esp.imgEl }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="height: 15vh;"></div>
+    </section>
+
+    <div class="rule" style="height: 1px; background: rgba(var(--ink-rgb),0.12); margin: 0 20px;"></div>
+
     <!-- ── Sobre ── -->
     <section id="sobre" class="sec-y" style="padding: 40px 0;">
       <div class="sec-pad" style="padding: 0 20px; margin-bottom: 40px;">
@@ -310,27 +331,6 @@ a:hover { color: var(--muted); }
           </div>
         </div>
       </div>
-    </section>
-
-    <div class="rule" style="height: 1px; background: rgba(var(--ink-rgb),0.12); margin: 0 20px;"></div>
-
-    <!-- ── Especialidades ── -->
-    <section id="especialidades" class="sec-pad" style="padding: 40px 20px 0;">
-      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--muted); margin: 0 0 32px;">{{ t.secEsp }}</p>
-      <div style="display: flex; flex-direction: column;">
-        <sc-for list="{{ especialidades }}" as="esp" hint-placeholder-count="4">
-          <div style="position: sticky; will-change: transform; border-radius: 16px; overflow: hidden; margin-bottom: 16px; top: {{ esp.top }}; z-index: {{ esp.z }}; background: {{ esp.bg }}; transform-origin: top center;">
-            <div class="esp-row" style="display: flex; flex-direction: column; align-items: stretch;">
-              <div class="esp-body" style="flex: 1; padding: 24px; display: flex; flex-direction: column; justify-content: center; gap: 12px;">
-                <p style="color: #000000; line-height: 1.25; font-family: 'Palanquin', serif; font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.4rem); letter-spacing: -0.02em; margin: 0;">{{ esp.title }}</p>
-                <p style="color: rgba(0,0,0,0.8); line-height: 1.375; font-family: 'Palanquin', serif; font-weight: 400; font-size: clamp(0.9rem, 2vw, 1.1rem); margin: 0;">{{ esp.desc }}</p>
-              </div>
-              <div class="esp-img" style="width: 100%; height: 192px; flex-shrink: 0;">{{ esp.imgEl }}</div>
-            </div>
-          </div>
-        </sc-for>
-      </div>
-      <div style="height: 15vh;"></div>
     </section>
 
     <!-- ── Footer ── -->
@@ -410,11 +410,11 @@ class Component extends DCLogic {
       },
     };
     const navDefs = pt ? [
-      ["Início", "hero"], ["Case Studies", "cases"], ["Sobre", "sobre"],
-      ["Especialidades", "especialidades"],
+      ["Início", "hero"], ["Case Studies", "cases"], ["Especialidades", "especialidades"],
+      ["Sobre", "sobre"],
     ] : [
-      ["Home", "hero"], ["Case Studies", "cases"], ["About", "sobre"],
-      ["Specialties", "especialidades"],
+      ["Home", "hero"], ["Case Studies", "cases"], ["Specialties", "especialidades"],
+      ["About", "sobre"],
     ];
     const marqueeBase = ["UX/UI Design","Product Design","Design Systems","Prototipação","UX Research","Figma","Front-End","Sócio-Torcedor","Sistemas Financeiros","Atomic Design"];
 
