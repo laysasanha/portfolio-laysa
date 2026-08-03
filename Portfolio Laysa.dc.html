@@ -31,6 +31,23 @@ html[data-theme="dark"] .theme-icon-sun { display: block; }
 html, body { margin: 0; padding: 0; background: var(--paper); scroll-behavior: smooth; }
 a { color: var(--ink); text-decoration: none; }
 a:hover { color: var(--muted); }
+/* ── Cursor customizado (só em telas com mouse) ── */
+@media (hover:hover) and (pointer:fine) {
+  body, a, button { cursor:none; }
+}
+#ls-cursor-dot, #ls-cursor-ring {
+  position:fixed; top:0; left:0; z-index:9999;
+  pointer-events:none; border-radius:999px;
+  mix-blend-mode:difference; will-change:transform;
+}
+#ls-cursor-dot {
+  width:8px; height:8px; background:#fff; margin:-4px 0 0 -4px;
+  transition:width .2s, height .2s, margin .2s;
+}
+#ls-cursor-ring {
+  width:38px; height:38px; border:1.5px solid #fff; margin:-19px 0 0 -19px;
+  transition:width .25s, height .25s, margin .25s, border-color .25s;
+}
 @keyframes pulse-dot { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.7); opacity: 0.5; } }
 @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-33.333%); } }
 @keyframes float0 { 0%,100% { transform: rotate(-2deg) translateY(0); } 50% { transform: rotate(-2deg) translateY(-10px); } }
@@ -243,7 +260,7 @@ a:hover { color: var(--muted); }
                 <span style="font-size: 12px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 6px; width: fit-content;">{{ t.viewProject }}</span>
               </div>
               <div class="case-strip" style="position: relative; width: 100%; height: 128px; flex-shrink: 0; display: flex; align-items: flex-end; justify-content: flex-end; overflow: hidden; background: {{ c.mockupBg }};">
-                <span class="case-num" style="font-size: 8rem; font-weight: 900; line-height: 1; user-select: none; padding-right: 16px; padding-bottom: 8px; opacity: 0.2; color: {{ c.mockupAccent }}; font-family: 'Inter', sans-serif;">{{ c.number }}</span>
+                <span class="case-num" style="font-size: 8rem; font-weight: 900; line-height: 1; user-select: none; padding-right: 16px; padding-bottom: 8px; opacity: 0.45; color: {{ c.mockupAccent }}; font-family: 'Inter', sans-serif;">{{ c.number }}</span>
               </div>
             </div>
           </div>
@@ -365,10 +382,58 @@ class Component extends DCLogic {
       if (show !== this.state.showTop) this.setState({ showTop: show });
     };
     window.addEventListener("scroll", this._onScroll, { passive: true });
+    this.initCursor();
   }
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this._onScroll);
+    if (this._cleanupCursor) this._cleanupCursor();
+  }
+
+  initCursor() {
+    // não roda em telas de toque
+    if (window.matchMedia && !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+
+    // remove instâncias antigas (evita duplicar no hot-reload)
+    ['ls-cursor-dot','ls-cursor-ring'].forEach(id => {
+      const o = document.getElementById(id); if (o) o.remove();
+    });
+
+    const dot  = document.createElement('div'); dot.id  = 'ls-cursor-dot';
+    const ring = document.createElement('div'); ring.id = 'ls-cursor-ring';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    let mx = window.innerWidth/2, my = window.innerHeight/2, rx = mx, ry = my, raf;
+
+    const onMove = e => {
+      mx = e.clientX; my = e.clientY;
+      // o ponto acompanha na hora
+      dot.style.transform = `translate(${mx}px,${my}px)`;
+      // sobre link/botão o anel cresce e fica azul
+      const hot = e.target.closest && e.target.closest('a,button');
+      ring.style.width = ring.style.height = hot ? '58px' : '38px';
+      ring.style.margin = hot ? '-29px 0 0 -29px' : '-19px 0 0 -19px';
+      ring.style.borderColor = hot ? '#3b6bff' : '#fff';
+    };
+
+    // o anel segue com inércia (leve atraso)
+    const loop = () => {
+      rx += (mx - rx) * 0.18;
+      ry += (my - ry) * 0.18;
+      ring.style.transform = `translate(${rx}px,${ry}px)`;
+      raf = requestAnimationFrame(loop);
+    };
+
+    window.addEventListener('mousemove', onMove);
+    loop();
+
+    // limpeza
+    this._cleanupCursor = () => {
+      window.removeEventListener('mousemove', onMove);
+      cancelAnimationFrame(raf);
+      dot.remove(); ring.remove();
+    };
   }
 
   scrollToId(id) {
@@ -444,16 +509,16 @@ class Component extends DCLogic {
       cases: [
         { href: "Case Sistema de Contas.dc.html", number: "01", title: "Sistema de Contas",
           desc: pt ? "Plataforma financeira para produtoras, com controle de entradas, saídas, solicitações de saque e fechamentos. Usada no Brasil, Uruguai e Chile." : "Financial platform for event producers, covering income, expenses, withdrawal requests and closings. Used in Brazil, Uruguay and Chile.",
-          tags: ["Web App","Mobile","Fintech"], mockupBg: "linear-gradient(160deg,#001a40,#0055cc)", mockupAccent: "#c0e8ff" },
+          tags: ["Web App","Mobile","Fintech"], mockupBg: "linear-gradient(160deg,#001a40,#0055cc)", mockupAccent: "#eaf6ff" },
         { href: "Case MML Solucoes.dc.html", number: "02", title: "MML SOLUÇÕES",
           desc: pt ? "Plataforma de monitoramento de servidores com status em tempo real, fluxos de onboarding multi-etapa e personalização de planos de infraestrutura." : "Server-monitoring platform with real-time status, multi-step onboarding flows and infrastructure plan customization.",
-          tags: ["Web App","Dashboard","B2B"], mockupBg: "linear-gradient(160deg,#082e6b,#0b4cad)", mockupAccent: "#c0d8ff" },
+          tags: ["Web App","Dashboard","B2B"], mockupBg: "linear-gradient(160deg,#082e6b,#0b4cad)", mockupAccent: "#eaf1ff" },
         { href: "Case In Fit.dc.html", number: "03", title: "IN FIT",
           desc: pt ? "Plataforma fitness completa, com landing de conversão, cadastro com pagamento e dashboards de treino para alunos e funcionários." : "Complete fitness platform, with conversion landing, sign-up with payment and workout dashboards for members and staff.",
-          tags: ["Web App","Fitness","Dashboard"], mockupBg: "linear-gradient(160deg,#121411,#008eff)", mockupAccent: "#ff5c00" },
+          tags: ["Web App","Fitness","Dashboard"], mockupBg: "linear-gradient(160deg,#121411,#008eff)", mockupAccent: "#ffe3c2" },
         { href: "Case Anime.dc.html", number: "04", title: "Ani.me",
           desc: pt ? "Plataforma de streaming de animes, com catálogo alfabético, player com sinopse e comentários, em desktop e mobile." : "Anime streaming platform, with alphabetical catalog, player with synopsis and comments, on desktop and mobile.",
-          tags: ["Web","Mobile","Streaming"], mockupBg: "linear-gradient(160deg,#0a0e14,#2196f3)", mockupAccent: "#bfe3ff" },
+          tags: ["Web","Mobile","Streaming"], mockupBg: "linear-gradient(160deg,#0a0e14,#2196f3)", mockupAccent: "#eaf6ff" },
       ].map(c => ({ ...c, open: () => { if (c.href) window.location.href = c.href; } })),
       otherCases: [
         { href: "Case Naped.dc.html", number: "05", title: "Naped", tags: ["Web","Editorial","Design System"] },
